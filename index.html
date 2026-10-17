@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Educación Interprofesional ULagos</title>
+<meta name="description" content="Cápsula educativa sobre Educación Interprofesional Universitaria para docentes de Enfermería, Fonoaudiología, Obstetricia, Trabajo Social y Pedagogía. Universidad de Los Lagos.">
+
+<!-- Tipografías: solo dos familias (Roboto Condensed para títulos, Roboto para texto) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap">
+<!-- Íconos: Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- Generador de PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+
+<style>
+/* =====================================================================
+   1. TOKENS DE DISEÑO
+   Composición editorial-académica: alineación izquierda, gran espacio
+   negativo, #055E61 como color de identidad dominante.
+   ===================================================================== */
+:root{
+  --teal:#055E61;          /* identidad institucional */
+  --teal-700:#044a4c;
+  --teal-900:#033537;
+  --teal-rgb:5,94,97;
+  --bg:#F8FAFA;            /* fondo general */
+  --surface:#FFFFFF;
+  --ink:#222222;           /* texto principal */
+  --ink-2:#4A4A4A;         /* texto secundario */
+  --aqua:#DCEEEF;          /* turquesa claro */
+  --mist:#EAF2F1;          /* verde grisáceo claro */
+  --line:#D9DEDE;          /* separadores */
+  --ok:#1E7A46; --ok-bg:#E6F4EC;
+  --bad:#B3261E; --bad-bg:#FBEAEA;
+  --warn:#8A5A00; --warn-bg:#FFF4DC;
+
+  --f-title:"Roboto Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Roboto",Arial,Helvetica,sans-serif;
+
+  /* Jerarquía (pt -> rem aproximado en pantalla) */
+  --fs-cover:clamp(2.3rem,5.2vw,3.6rem);   /* 40–48 pt */
+  --fs-h1:clamp(1.85rem,3.6vw,2.6rem);     /* 30–36 pt */
+  --fs-sub:clamp(1.1rem,1.8vw,1.35rem);    /* 18–22 pt */
+  --fs-h2:clamp(1.25rem,2.1vw,1.55rem);    /* 20–24 pt */
+  --fs-body:clamp(1rem,1.25vw,1.12rem);    /* 16–20 pt */
+  --fs-small:.9rem;                        /* 13–15 pt */
+  --fs-foot:.75rem;                        /* 9–11 pt */
+
+  --radius:14px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(3,53,55,.06),0 8px 24px rgba(3,53,55,.06);
+  --glass:rgba(255,255,255,.72);
+  --gutter:clamp(18px,7vw,80px);           /* ≈0,70–0,85 in en escritorio */
+  --maxw:1120px;
+}
+
+/* =====================================================================
+   2. BASE
+   ===================================================================== */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--f-body);font-size:var(--fs-body);line-height:1.6;
+  padding-left:max(0px,env(safe-area-inset-left,0px));
+  padding-right:max(0px,env(safe-area-inset-right,0px));
+}
+img{max-width:100%;display:block}
+a{color:var(--teal)}
+p{margin:0 0 .75em}
+.just{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+:focus-visible{outline:3px solid #0A8A8F;outline-offset:2px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.skip{position:absolute;left:-999px;top:8px;background:var(--teal);color:#fff;padding:8px 14px;border-radius:8px;z-index:200}
+.skip:focus{left:12px}
+
+/* =====================================================================
+   3. ESTRUCTURA: barra superior + progreso
+   ===================================================================== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:var(--maxw);margin:0 auto;padding:10px var(--gutter);
+  display:flex;align-items:center;gap:14px;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-mark{width:34px;height:34px;border-radius:8px;background:var(--teal);color:#fff;display:grid;place-items:center;flex:none}
+.brand-txt{font-family:var(--f-title);font-weight:500;color:var(--teal);line-height:1.1;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-txt small{display:block;color:var(--ink-2);font-family:var(--f-body);font-weight:400;font-size:.72rem}
+.top-actions{display:flex;align-items:center;gap:8px}
+.user-chip{font-size:.8rem;color:var(--ink-2);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.progress{height:3px;background:var(--mist)}
+.progress span{display:block;height:100%;width:0;background:var(--teal);transition:width .5s ease}
+
+/* =====================================================================
+   4. SECCIONES (pestañas)
+   ===================================================================== */
+main{max-width:var(--maxw);margin:0 auto;padding:clamp(28px,5vw,56px) var(--gutter) 150px}
+.section{display:none;animation:fadeIn .45s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--f-title);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.eyebrow .num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;font-size:.8rem;letter-spacing:0}
+h1,h2,h3{font-family:var(--f-title);font-weight:500;color:var(--teal);text-wrap:balance;margin:0}
+.h1{font-size:var(--fs-h1);line-height:1.15}
+.h1-rule{height:2px;width:72px;background:var(--teal);margin:16px 0 28px;border:0}
+.h2{font-size:var(--fs-h2);line-height:1.2;margin:42px 0 14px}
+.h3{font-size:1.12rem;line-height:1.25;margin:0 0 8px}
+.lead{font-size:var(--fs-sub);color:var(--ink-2);max-width:68ch;line-height:1.5}
+.muted{color:var(--ink-2)}
+.small{font-size:var(--fs-small)}
+.prose{max-width:72ch}
+
+/* Rejillas */
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(22px,4vw,48px);align-items:center}
+.split > *{min-width:0}
+
+/* Tarjetas: se usan por rol, no en todo */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.card.glass{background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+.card .ic{width:42px;height:42px;border-radius:10px;background:var(--aqua);color:var(--teal);display:grid;place-items:center;font-size:1.1rem;margin-bottom:12px}
+.card p{font-size:.98rem;color:var(--ink-2)}
+.card p:last-child{margin-bottom:0}
+
+.band{background:var(--teal);color:#fff;border-radius:var(--radius);padding:clamp(22px,4vw,38px)}
+.band h2,.band h3{color:#fff}
+.band p{color:#E7F3F3}
+.band .eyebrow{color:#BFE3E4}
+
+.callout{border-left:3px solid var(--teal);background:var(--mist);padding:16px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin:18px 0}
+.callout.warn{border-color:var(--warn);background:var(--warn-bg)}
+.callout p:last-child{margin:0}
+
+/* Figuras: imagen centrada */
+.figure{margin:0;display:flex;flex-direction:column;align-items:center}
+.figure img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);background:var(--aqua)}
+.figure.wide img{aspect-ratio:16/7}
+.figure figcaption{font-size:var(--fs-foot);color:var(--ink-2);margin-top:8px;align-self:flex-start}
+
+/* Listas */
+.checklist{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.checklist li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
+.checklist i{color:var(--teal);margin-top:4px}
+
+/* =====================================================================
+   5. BOTONES Y FORMULARIOS
+   ===================================================================== */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--f-title);font-weight:500;font-size:1rem;letter-spacing:.02em;
+  border-radius:999px;padding:12px 22px;border:1.5px solid var(--teal);
+  background:var(--teal);color:#fff;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.btn:hover{background:var(--teal-700);box-shadow:0 6px 16px rgba(var(--teal-rgb),.22)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--teal)}
+.btn.ghost:hover{background:var(--mist);box-shadow:none}
+.btn.sm{padding:8px 14px;font-size:.88rem}
+.btn.icon{width:38px;height:38px;padding:0}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-weight:500;font-size:.95rem}
+.field label .opt{font-weight:400;color:var(--ink-2);font-size:.82rem}
+.input,select.input,textarea.input{
+  font:inherit;font-size:1rem;color:var(--ink);background:#fff;
+  border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:12px 14px;width:100%;
+  transition:border-color .2s,box-shadow .2s;
+}
+.input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(var(--teal-rgb),.12);outline:none}
+.input.valid{border-color:var(--ok)}
+.input.invalid{border-color:var(--bad);background:#FFFBFB}
+.hint{font-size:.82rem;color:var(--ink-2);min-height:1.1em}
+.hint.err{color:var(--bad)}
+.hint.ok{color:var(--ok)}
+textarea.input{min-height:120px;resize:vertical;line-height:1.5}
+
+/* =====================================================================
+   6. INGRESO Y PORTADA
+   ===================================================================== */
+.login-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,60px);align-items:start}
+.login-wrap > *{min-width:0}
+.login-aside{background:var(--teal);color:#fff;border-radius:var(--radius);padding:clamp(24px,4vw,40px);position:relative;overflow:hidden}
+.login-aside h1{color:#fff;font-size:var(--fs-h1);line-height:1.12}
+.login-aside p{color:#DDEFEF}
+.login-aside .ring{position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border:2px solid rgba(255,255,255,.14);border-radius:50%}
+.login-aside .ring.b{right:-20px;bottom:-110px;width:260px;height:260px}
+
+.cover{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,56px);align-items:center}
+.cover > *{min-width:0}
+.cover-title{font-size:var(--fs-cover);line-height:1.05;letter-spacing:-.01em}
+.cover-sub{font-size:var(--fs-sub);color:var(--ink-2);margin:18px 0 0;max-width:46ch}
+.disciplines{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 6px}
+.pill{display:inline-flex;align-items:center;gap:7px;font-size:.84rem;padding:6px 12px;border-radius:999px;background:var(--mist);color:var(--teal-900);border:1px solid var(--aqua)}
+.cover-visual{position:relative}
+.cover-visual .figure img{aspect-ratio:1/1}
+.cover-badge{
+  position:absolute;left:-14px;bottom:24px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.6);box-shadow:var(--shadow);border-radius:var(--radius);padding:14px 16px;display:flex;gap:12px;align-items:center;max-width:270px
+}
+.cover-badge i{color:var(--teal);font-size:1.4rem}
+.cover-badge b{font-family:var(--f-title);font-weight:500;color:var(--teal);display:block;line-height:1.1}
+.cover-badge span{font-size:.78rem;color:var(--ink-2)}
+.meta-row{display:flex;flex-wrap:wrap;gap:22px;margin-top:28px;padding-top:18px;border-top:1px solid var(--line);font-size:.88rem;color:var(--ink-2)}
+.meta-row i{color:var(--teal);margin-right:6px}
+
+/* =====================================================================
+   7. EMBEBIDOS (YouTube, Educaplay, Drive)
+   ===================================================================== */
+.embed{position:relative;width:100%;border-radius:var(--radius);overflow:hidden;background:#0b2b2c;border:1px solid var(--line)}
+.embed.video{aspect-ratio:16/9}
+.embed.video > div,.embed.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.embed.game{height:690px;background:#fff}
+.embed.game iframe{width:100%;height:100%;border:0;display:block}
+.embed.audio{height:150px;background:#fff}
+.embed.audio iframe{width:100%;height:100%;border:0}
+.embed-center{max-width:900px;margin:0 auto}
+
+/* =====================================================================
+   8. VIDEO-QUIZ
+   ===================================================================== */
+.vq-status{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.vq-chip{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:.84rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.vq-chip.done{background:var(--ok-bg);border-color:#BFE3CC;color:var(--ok)}
+.vq-chip.now{background:var(--aqua);border-color:var(--teal);color:var(--teal-900)}
+.vq-chip button{font:inherit;border:0;background:none;color:var(--teal);text-decoration:underline;cursor:pointer;padding:0}
+.vq-panel{margin-top:18px;border:1.5px solid var(--teal);border-radius:var(--radius);background:#fff;padding:clamp(18px,3vw,28px);box-shadow:var(--shadow);animation:fadeIn .35s ease}
+.vq-panel-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;color:var(--teal);font-family:var(--f-title);font-weight:500}
+.vq-pause{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;background:var(--teal);color:#fff;border-radius:999px;padding:3px 10px;margin-left:auto}
+
+/* =====================================================================
+   9. PREGUNTAS (motor común: OM, V/F, arrastrar, relacionar)
+   ===================================================================== */
+.q{border:1px solid var(--line);border-radius:var(--radius);background:#fff;padding:clamp(18px,3vw,26px);margin-bottom:18px}
+.q-head{display:flex;gap:10px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.q-tag{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--teal);background:var(--mist);padding:4px 10px;border-radius:999px}
+.q-lvl{font-size:.74rem;color:var(--ink-2)}
+.q-prompt{font-weight:500;font-size:1.04rem;margin:0 0 14px;line-height:1.5}
+.opts{display:grid;gap:10px}
+.opt{
+  display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;text-align:left;
+  font:inherit;font-size:.98rem;color:var(--ink);background:#fff;border:1.5px solid var(--line);
+  border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;transition:border-color .2s,background .2s,transform .12s;
+}
+.opt:hover{border-color:var(--teal);background:var(--bg)}
+.opt .k{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-family:var(--f-title);font-weight:600;color:var(--teal);font-size:.9rem;background:#fff}
+.opt[aria-checked="true"]{border-color:var(--teal);background:var(--aqua);box-shadow:inset 0 0 0 1px var(--teal)}
+.opt[aria-checked="true"] .k{background:var(--teal);color:#fff;border-color:var(--teal)}
+.opt.correct{border-color:var(--ok);background:var(--ok-bg);box-shadow:none}
+.opt.correct .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--bad-bg);box-shadow:none}
+.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:#fff}
+.locked .opt{cursor:default}
+.locked .opt:hover{transform:none}
+
+/* Arrastrar y soltar (con alternativa táctil y teclado: tocar ficha y luego zona) */
+.dd-bank{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1.5px dashed var(--line);border-radius:var(--radius-sm);min-height:58px;background:var(--bg);margin-bottom:14px}
+.dd-zones{display:grid;gap:12px}
+.dd-zone{border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff;min-height:96px;padding:10px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,background .2s;cursor:pointer}
+.dd-zone h4{margin:0;font-family:var(--f-title);font-weight:500;color:var(--teal);font-size:.98rem;display:flex;align-items:center;gap:8px}
+.dd-zone .slots{display:flex;flex-wrap:wrap;gap:8px}
+.dd-zone.over,.dd-zone.target{border-color:var(--teal);background:var(--mist)}
+.chip{font:inherit;font-size:.9rem;line-height:1.35;text-align:left;background:#fff;border:1.5px solid var(--teal);color:var(--teal-900);border-radius:10px;padding:8px 12px;cursor:grab;max-width:100%;transition:transform .12s,background .2s}
+.chip:hover{background:var(--mist)}
+.chip[aria-pressed="true"]{background:var(--teal);color:#fff}
+.chip.dragging{opacity:.4}
+.chip.correct{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+.chip.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.locked .chip{cursor:default}
+
+/* Relacionar columnas */
+.match{display:grid;gap:10px}
+.match-row{display:grid;grid-template-columns:minmax(0,.9fr) 24px minmax(0,1.3fr);gap:10px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+.match-row .left{font-weight:500;color:var(--teal-900)}
+.match-row .arrow{color:var(--teal);text-align:center}
+.match-row select{padding:10px 12px}
+.match-row.correct{border-color:var(--ok);background:var(--ok-bg)}
+.match-row.wrong{border-color:var(--bad);background:var(--bad-bg)}
+
+.fb{margin-top:14px;padding:14px 16px;border-radius:var(--radius-sm);font-size:.95rem;display:grid;grid-template-columns:24px 1fr;gap:10px;animation:fadeIn .3s ease}
+.fb.ok{background:var(--ok-bg);color:#14532D;border:1px solid #BFE3CC}
+.fb.bad{background:var(--bad-bg);color:#7F1D1D;border:1px solid #F1C4C4}
+.fb.part{background:var(--warn-bg);color:#6B4500;border:1px solid #F3DBA3}
+.fb i{margin-top:3px}
+.q-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* Resultados de evaluación */
+.score{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.ring-score{width:132px;height:132px;position:relative}
+.ring-score svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-score .v{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--f-title);color:var(--teal)}
+.ring-score .v b{font-size:2rem;font-weight:600;line-height:1}
+.ring-score .v small{display:block;font-size:.75rem;color:var(--ink-2)}
+.status-pill{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;font-weight:500;font-size:.88rem}
+.status-pill.ok{background:var(--ok-bg);color:var(--ok)}
+.status-pill.bad{background:var(--bad-bg);color:var(--bad)}
+
+/* =====================================================================
+   10. SÍNTESIS: infografía
+   ===================================================================== */
+.ideas{counter-reset:idea;display:grid;gap:16px}
+.idea{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.idea:last-child{border-bottom:0}
+.idea::before{counter-increment:idea;content:counter(idea,decimal-leading-zero);font-family:var(--f-title);font-size:1.8rem;color:var(--teal);font-weight:500;line-height:1}
+.idea h3{font-size:1.12rem;margin-bottom:4px}
+.idea p{margin:0;color:var(--ink-2)}
+.info{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:8px}
+.info-step{padding:20px 18px;position:relative;border-top:3px solid var(--teal)}
+.info-step:nth-child(2){border-color:#2A7F82}
+.info-step:nth-child(3){border-color:#5C9FA1}
+.info-step:nth-child(4){border-color:var(--teal-900)}
+.info-step .big{font-family:var(--f-title);font-size:1.6rem;color:var(--teal);font-weight:500;display:flex;align-items:center;gap:10px}
+.info-step p{font-size:.92rem;color:var(--ink-2);margin:6px 0 0}
+
+/* =====================================================================
+   11. ELEMENTOS FLOTANTES: menú, chatbot, toasts, modales
+   ===================================================================== */
+.dock{
+  position:fixed;left:50%;transform:translateX(-50%);
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;
+  display:flex;align-items:center;gap:4px;padding:6px;
+  background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(217,222,222,.9);border-radius:999px;box-shadow:0 10px 30px rgba(3,53,55,.14);
+  max-width:calc(100vw - 24px);
+}
+.dock[hidden]{display:none!important}
+.dock-tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.dock-tabs::-webkit-scrollbar{display:none}
+.tab{
+  position:relative;flex:none;border:0;background:transparent;color:var(--ink-2);font:inherit;
+  font-size:.78rem;padding:7px 11px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:7px;
+  transition:background .2s,color .2s;white-space:nowrap
+}
+.tab i{font-size:.95rem}
+.tab:hover{background:var(--mist);color:var(--teal)}
+.tab[aria-selected="true"]{background:var(--teal);color:#fff}
+.tab.visited:not([aria-selected="true"])::after{content:"";position:absolute;top:5px;right:5px;width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.dock .nav-arrow{flex:none;width:36px;height:36px;border-radius:50%;border:0;background:var(--mist);color:var(--teal);cursor:pointer}
+.dock .nav-arrow:hover{background:var(--aqua)}
+.dock .nav-arrow[disabled]{opacity:.35;cursor:default}
+
+.chatbot{
+  position:fixed;z-index:70;
+  right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;
+  background:var(--teal);color:#fff;text-decoration:none;font-family:var(--f-title);font-weight:500;font-size:.95rem;
+  box-shadow:0 10px 24px rgba(var(--teal-rgb),.32);transition:transform .2s,background .2s
+}
+.chatbot:hover{transform:translateY(-2px);background:var(--teal-700)}
+.chatbot .bot{width:36px;height:36px;border-radius:50%;background:#fff;color:var(--teal);display:grid;place-items:center;font-size:1.05rem}
+
+.toast-box{position:fixed;top:calc(70px + env(safe-area-inset-top,0px));right:16px;z-index:120;display:flex;flex-direction:column;gap:8px;max-width:min(380px,calc(100vw - 32px))}
+.toast{background:var(--ink);color:#fff;padding:12px 16px;border-radius:12px;font-size:.92rem;box-shadow:var(--shadow);display:flex;gap:10px;align-items:flex-start;animation:fadeIn .3s ease}
+.toast.ok{background:var(--ok)} .toast.bad{background:var(--bad)}
+
+.modal{position:fixed;inset:0;z-index:150;background:rgba(3,30,31,.45);display:grid;place-items:center;padding:16px}
+.modal[hidden]{display:none!important}
+.modal-box{background:#fff;border-radius:var(--radius);max-width:520px;width:100%;padding:26px;box-shadow:0 20px 50px rgba(0,0,0,.2);max-height:90vh;overflow:auto}
+.modal-box.wide{max-width:960px}
+.modal-box h2{font-size:1.4rem;margin-bottom:10px}
+
+/* Certificado (maqueta para html2pdf, fuera de pantalla) */
+#certStage{position:fixed;left:-12000px;top:0}
+.cert{width:1040px;height:790px;background:#fff;position:relative;font-family:var(--f-body);color:var(--ink);padding:44px}
+.cert-frame{position:absolute;inset:22px;border:2px solid var(--teal)}
+.cert-frame::after{content:"";position:absolute;inset:8px;border:1px solid var(--aqua)}
+.cert-in{position:relative;height:100%;padding:34px 54px;display:flex;flex-direction:column}
+.cert-top{display:flex;justify-content:space-between;align-items:flex-start}
+.cert-inst{font-family:var(--f-title);color:var(--teal);font-size:15px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.cert-inst small{display:block;letter-spacing:.04em;text-transform:none;color:var(--ink-2);font-weight:400;font-size:12px;margin-top:3px}
+.cert h1{font-size:46px;margin:30px 0 4px;letter-spacing:.02em}
+.cert .rule{width:90px;height:3px;background:var(--teal);margin:10px 0 22px}
+.cert .lbl{font-size:14px;color:var(--ink-2)}
+.cert .name{font-family:var(--f-title);font-size:36px;color:var(--ink);font-weight:500;margin:6px 0 2px}
+.cert .data{font-size:13px;color:var(--ink-2)}
+.cert .body{font-size:15px;line-height:1.55;margin-top:16px;max-width:760px;text-align:justify}
+.cert .commit{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--ink-2);border-left:3px solid var(--teal);padding:8px 14px;background:var(--mist);max-width:760px;text-align:justify}
+.cert-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.cert-sign{width:230px;text-align:center;font-size:12px;color:var(--ink-2)}
+.cert-sign .ln{border-top:1px solid var(--ink);margin-bottom:6px}
+.cert-score{font-family:var(--f-title);font-size:15px;color:var(--teal)}
+.cert-seal{position:absolute;right:58px;top:110px;width:128px;height:128px}
+
+/* Pie */
+.foot{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter) 120px;font-size:var(--fs-foot);color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* =====================================================================
+   12. RESPONSIVO
+   ===================================================================== */
+@media (max-width:960px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .info{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab span{display:none}
+  .tab{padding:9px 11px}
+}
+@media (max-width:760px){
+  .split,.cover,.login-wrap,.g2,.g3,.g4{grid-template-columns:1fr}
+  .cover-visual{order:-1}
+  .cover-badge{left:10px;bottom:10px}
+  .embed.game{height:560px}
+  .score{grid-template-columns:1fr;justify-items:start}
+  .match-row{grid-template-columns:1fr}
+  .match-row .arrow{display:none}
+  .user-chip{display:none}
+  .chatbot .lbl{display:none}
+  .chatbot{padding:10px}
+  .info{grid-template-columns:1fr}
+  .just{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<!-- ============================ BARRA SUPERIOR ============================ -->
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><i class="fa-solid fa-people-group"></i></div>
+      <div class="brand-txt">Educación Interprofesional<small>Universidad de Los Lagos · Cápsula docente</small></div>
+    </div>
+    <div class="top-actions">
+      <span class="user-chip" id="userChip"></span>
+      <button class="btn ghost sm" id="btnClear" type="button" title="Borrar datos guardados en este navegador"><i class="fa-solid fa-trash-can" aria-hidden="true"></i><span>Borrar datos</span></button>
+    </div>
+  </div>
+  <div class="progress" role="progressbar" aria-label="Avance en la cápsula" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
+</header>
+
+<main id="main" tabindex="-1">
+
+<!-- ============================ 1. INGRESO ============================ -->
+<section class="section" id="s-ingreso" aria-labelledby="t-ingreso">
+  <div class="login-wrap">
+    <div class="login-aside">
+      <div class="eyebrow" style="color:#BFE3E4">Registro de participante</div>
+      <h1 id="t-ingreso">Aprender con, de y sobre otras profesiones</h1>
+      <p style="margin-top:16px" class="just">Cápsula de formación para docentes de Enfermería, Fonoaudiología, Obstetricia, Trabajo Social y Pedagogía de la Universidad de Los Lagos.</p>
+      <ul class="checklist" style="margin-top:22px">
+        <li><i class="fa-solid fa-clock" style="color:#BFE3E4"></i><span>Duración estimada: 60 a 75 minutos.</span></li>
+        <li><i class="fa-solid fa-certificate" style="color:#BFE3E4"></i><span>Certificado al aprobar con 70 % o más.</span></li>
+        <li><i class="fa-solid fa-floppy-disk" style="color:#BFE3E4"></i><span>Tu avance se guarda en este navegador.</span></li>
+      </ul>
+      <div class="ring" aria-hidden="true"></div><div class="ring b" aria-hidden="true"></div>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <h2 class="h1" style="font-size:var(--fs-h2)">Datos de ingreso</h2>
+      <hr class="h1-rule">
+      <p class="muted small just">Estos datos son necesarios para generar tu <b>certificado de aprobación</b> y el <b>reporte de resultados</b> para el tutor. Se almacenan solo en este navegador (localStorage) y puedes borrarlos cuando quieras.</p>
+
+      <div class="field">
+        <label for="fName">Nombre completo</label>
+        <input class="input" id="fName" name="name" autocomplete="name" placeholder="Ej.: María José Pérez Soto" required>
+        <span class="hint" id="hName"></span>
+      </div>
+      <div class="field">
+        <label for="fEmail">Correo electrónico</label>
+        <input class="input" id="fEmail" name="email" type="email" autocomplete="email" placeholder="nombre@ulagos.cl" required>
+        <span class="hint" id="hEmail"></span>
+      </div>
+      <div class="field">
+        <label for="fCareer">Carrera</label>
+        <select class="input" id="fCareer" name="career" required>
+          <option value="">Selecciona tu carrera</option>
+          <option>Enfermería</option>
+          <option>Fonoaudiología</option>
+          <option>Obstetricia y Puericultura (Matronería)</option>
+          <option>Trabajo Social</option>
+          <option>Pedagogía</option>
+          <option>Otra unidad académica</option>
+        </select>
+        <span class="hint" id="hCareer"></span>
+      </div>
+      <div class="field">
+        <label for="fRut">RUT <span class="opt">(opcional)</span></label>
+        <input class="input" id="fRut" name="rut" placeholder="12.345.678-9" inputmode="text" autocomplete="off">
+        <span class="hint" id="hRut">Si lo ingresas, se valida el dígito verificador.</span>
+      </div>
+      <button class="btn" type="submit"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i>Ingresar a la cápsula</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============================ 2. PORTADA ============================ -->
+<section class="section" id="s-portada" aria-labelledby="t-portada">
+  <div class="cover">
+    <div>
+      <div class="eyebrow"><span class="num">01</span>Portada</div>
+      <h1 class="cover-title" id="t-portada">Educación Interprofesional Universitaria</h1>
+      <p class="cover-sub">Aprendiendo con, de y sobre otras disciplinas para formar equipos que cuidan mejor.</p>
+      <div class="disciplines" aria-label="Carreras participantes">
+        <span class="pill"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i>Enfermería</span>
+        <span class="pill"><i class="fa-solid fa-comments" aria-hidden="true"></i>Fonoaudiología</span>
+        <span class="pill"><i class="fa-solid fa-person-pregnant" aria-hidden="true"></i>Obstetricia</span>
+        <span class="pill"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>Trabajo Social</span>
+        <span class="pill"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>Pedagogía</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn" type="button" data-go="s-intro"><i class="fa-solid fa-play" aria-hidden="true"></i>Comenzar la cápsula</button>
+      </div>
+      <div class="meta-row">
+        <span><i class="fa-solid fa-building-columns" aria-hidden="true"></i>Universidad de Los Lagos</span>
+        <span><i class="fa-solid fa-layer-group" aria-hidden="true"></i>8 secciones</span>
+        <span><i class="fa-solid fa-award" aria-hidden="true"></i>Certificado digital</span>
+      </div>
+    </div>
+    <div class="cover-visual">
+      <figure class="figure">
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1100&q=80" alt="Grupo de estudiantes universitarios de distintas carreras trabajando juntos alrededor de una mesa" loading="eager" data-fallback>
+      </figure>
+      <div class="cover-badge">
+        <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
+        <div><b>Práctica colaborativa</b><span>Cinco carreras, un mismo caso, decisiones compartidas.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 3. INTRODUCCIÓN ============================ -->
+<section class="section" id="s-intro" aria-labelledby="t-intro">
+  <div class="eyebrow"><span class="num">02</span>Introducción</div>
+  <h1 class="h1" id="t-intro">¿Por qué formar interprofesionalmente?</h1>
+  <hr class="h1-rule">
+
+  <div class="split">
+    <div class="prose just">
+      <p>La educación interprofesional (EIP) ocurre cuando estudiantes o profesionales de dos o más disciplinas <b>aprenden con, de y sobre las otras</b> para mejorar la colaboración y la calidad de la atención. No basta con compartir una sala: la EIP exige interacción, reconocimiento de roles y construcción conjunta de decisiones.</p>
+      <p>En esta cápsula, basada en la charla del Dr. César Orsini, revisarás qué distingue a la EIP de la enseñanza multiprofesional, por qué organismos como la Organización Mundial de la Salud la consideran una estrategia para fortalecer los sistemas de salud y qué competencias desarrolla en estudiantes y docentes.</p>
+      <p>También conocerás cómo se proyecta esta experiencia en la Universidad de Los Lagos, donde las carreras de Enfermería, Fonoaudiología, Obstetricia, Trabajo Social y Pedagogía comparten escenarios de aprendizaje centrados en personas, familias y comunidades.</p>
+    </div>
+    <figure class="figure">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=80" alt="Profesionales de la salud revisando información de un paciente en conjunto" loading="lazy" data-fallback>
+      <figcaption>El trabajo colaborativo comienza en la formación.</figcaption>
+    </figure>
+  </div>
+
+  <div class="band" style="margin-top:40px">
+    <div class="eyebrow">Objetivo general</div>
+    <h2 style="font-size:var(--fs-h2);line-height:1.3">Presentar la experiencia de implementación de la educación superior interprofesional en las carreras de Enfermería, Fonoaudiología, Obstetricia, Trabajo Social y Pedagogía en la Universidad de Los Lagos.</h2>
+  </div>
+
+  <h2 class="h2">Resultados de aprendizaje</h2>
+  <div class="grid g3">
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-id-badge" aria-hidden="true"></i></div>
+      <h3 class="h3">RA 1 · Roles</h3>
+      <p class="just">Comprender los roles y funciones de otras profesiones para aumentar la efectividad de la atención clínica.</p>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-people-group" aria-hidden="true"></i></div>
+      <h3 class="h3">RA 2 · Equipos</h3>
+      <p class="just">Valorar la importancia de la formación de equipos interdisciplinarios desde el pregrado.</p>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i></div>
+      <h3 class="h3">RA 3 · Decisiones</h3>
+      <p class="just">Desarrollar competencias para la resolución colaborativa de problemas y la toma de decisiones compartidas.</p>
+    </article>
+  </div>
+
+  <h2 class="h2">Lo que revisarás</h2>
+  <ul class="checklist prose">
+    <li><i class="fa-solid fa-bolt" aria-hidden="true"></i><span><b>Activación:</b> un juego breve para recuperar tus conocimientos previos.</span></li>
+    <li><i class="fa-solid fa-circle-play" aria-hidden="true"></i><span><b>Desarrollo:</b> conceptos clave y video con preguntas que pausan la reproducción.</span></li>
+    <li><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i><span><b>Evaluación formativa:</b> práctica sin calificación.</span></li>
+    <li><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i><span><b>Evaluación sumativa:</b> 9 ítems; se aprueba con 70 %.</span></li>
+    <li><i class="fa-solid fa-headphones" aria-hidden="true"></i><span><b>Síntesis:</b> ideas clave, infografía y pódcast.</span></li>
+    <li><i class="fa-solid fa-brain" aria-hidden="true"></i><span><b>Cierre:</b> reflexión metacognitiva, reporte y certificado.</span></li>
+  </ul>
+  <div class="btn-row"><button class="btn" type="button" data-go="s-activacion">Ir a la activación <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</section>
+
+<!-- ============================ 4. ACTIVACIÓN ============================ -->
+<section class="section" id="s-activacion" aria-labelledby="t-activacion">
+  <div class="eyebrow"><span class="num">03</span>Activación</div>
+  <h1 class="h1" id="t-activacion">EIP en acción: lo que ya sabes</h1>
+  <hr class="h1-rule">
+  <div class="grid g3" style="margin-bottom:26px">
+    <div class="card"><div class="ic"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i></div><h3 class="h3">1. Inicia</h3><p>Presiona el botón de inicio dentro del juego. Si lo prefieres, usa pantalla completa.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i></div><h3 class="h3">2. Responde</h3><p>Contesta según tu experiencia docente. No hay calificación: el propósito es activar ideas previas.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></div><h3 class="h3">3. Anota</h3><p>Registra una duda o idea que quieras confirmar durante el video.</p></div>
+  </div>
+  <div class="embed game embed-center">
+    <iframe allow="fullscreen; autoplay; allow-top-navigation-by-user-activation" allowfullscreen frameborder="0" title="Juego Educaplay: EIP en acción, empoderando equipos de salud" src="https://es.educaplay.com/juego/30892363-eip_en_accion_empoderando_equipos_de_salud.html" loading="lazy"></iframe>
+  </div>
+  <p class="small muted" style="margin-top:10px">¿No carga el juego? <a href="https://es.educaplay.com/juego/30892363-eip_en_accion_empoderando_equipos_de_salud.html" target="_blank" rel="noopener">Ábrelo en una pestaña nueva</a>.</p>
+  <div class="btn-row"><button class="btn" type="button" data-go="s-desarrollo">Continuar al desarrollo <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</section>
+
+<!-- ============================ 5. DESARROLLO ============================ -->
+<section class="section" id="s-desarrollo" aria-labelledby="t-desarrollo">
+  <div class="eyebrow"><span class="num">04</span>Desarrollo</div>
+  <h1 class="h1" id="t-desarrollo">Aprender con, de y sobre otras disciplinas</h1>
+  <hr class="h1-rule">
+
+  <p class="lead">Antes del video, revisa tres distinciones que te ayudarán a seguir la charla.</p>
+  <div class="grid g3" style="margin-top:22px">
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-grip-lines" aria-hidden="true"></i></div>
+      <h3 class="h3">Multiprofesional</h3>
+      <p class="just">Varias profesiones aprenden o trabajan <b>lado a lado</b>, en paralelo, sin necesariamente interactuar.</p>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-arrows-left-right-to-line" aria-hidden="true"></i></div>
+      <h3 class="h3">Interprofesional</h3>
+      <p class="just">Las profesiones aprenden <b>con, de y sobre</b> las otras. La interacción es la condición del aprendizaje.</p>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-handshake-angle" aria-hidden="true"></i></div>
+      <h3 class="h3">Práctica colaborativa</h3>
+      <p class="just">Profesionales de distintas áreas trabajan con pacientes, familias y comunidades para entregar la mejor atención posible.</p>
+    </article>
+  </div>
+
+  <h2 class="h2">Video central con preguntas integradas</h2>
+  <div class="callout">
+    <p><b>Cómo funciona:</b> el video se detendrá automáticamente en los minutos <b>3:00, 7:30, 11:00 y 15:00</b>. Responde la pregunta para continuar. Si adelantas el video, se detendrá en la primera pregunta pendiente.</p>
+  </div>
+
+  <div class="embed-center">
+    <div class="embed video" id="videoBox">
+      <div id="ytPlayer"></div>
+    </div>
+    <div class="vq-status" id="vqStatus" aria-live="polite"></div>
+    <div id="vqNotice"></div>
+    <div id="vqPanel" aria-live="assertive"></div>
+  </div>
+
+  <h2 class="h2">Las cuatro competencias de la colaboración interprofesional</h2>
+  <p class="prose just muted">El marco del Interprofessional Education Collaborative (IPEC) organiza las competencias en cuatro dominios que pueden evaluarse en actividades conjuntas entre carreras.</p>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="card"><div class="ic"><i class="fa-solid fa-heart" aria-hidden="true"></i></div><h3 class="h3">Valores y ética</h3><p>Respeto mutuo y valores compartidos centrados en la persona.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-id-card-clip" aria-hidden="true"></i></div><h3 class="h3">Roles y responsabilidades</h3><p>Conocer el propio rol y el de las otras profesiones.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-comments" aria-hidden="true"></i></div><h3 class="h3">Comunicación</h3><p>Comunicación receptiva y responsable con personas, familias y equipo.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-people-arrows" aria-hidden="true"></i></div><h3 class="h3">Trabajo en equipo</h3><p>Dinámica de equipos para planificar, decidir y evaluar la atención.</p></div>
+  </div>
+
+  <h2 class="h2">La experiencia en la Universidad de Los Lagos</h2>
+  <p class="prose just">La implementación articula cinco carreras en torno a casos compartidos, simulación clínica con debriefing conjunto y actividades en territorio (CESFAM, establecimientos educacionales y comunidad). Cada profesión aporta una mirada distinta sobre la misma persona.</p>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><div class="ic"><i class="fa-solid fa-user-nurse" aria-hidden="true"></i></div><h3 class="h3">Enfermería</h3><p>Gestión del cuidado, seguridad del paciente y continuidad de la atención.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-person-pregnant" aria-hidden="true"></i></div><h3 class="h3">Obstetricia</h3><p>Salud sexual y reproductiva, gestación y cuidado del binomio madre-hijo.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-ear-listen" aria-hidden="true"></i></div><h3 class="h3">Fonoaudiología</h3><p>Comunicación humana, lenguaje, voz, audición y deglución.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i></div><h3 class="h3">Trabajo Social</h3><p>Determinantes sociales, redes de apoyo y ejercicio de derechos.</p></div>
+    <div class="card"><div class="ic"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i></div><h3 class="h3">Pedagogía</h3><p>Procesos de enseñanza-aprendizaje, inclusión y educación para la salud.</p></div>
+    <div class="card" style="background:var(--mist);border-color:var(--aqua)"><div class="ic" style="background:#fff"><i class="fa-solid fa-circle-nodes" aria-hidden="true"></i></div><h3 class="h3">Caso compartido</h3><p>Gestante adolescente en riesgo de abandono escolar: las cinco miradas construyen un solo plan.</p></div>
+  </div>
+
+  <div class="split" style="margin-top:36px">
+    <figure class="figure">
+      <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80" alt="Equipo docente conversando en torno a una mesa de trabajo" loading="lazy" data-fallback>
+      <figcaption>El desarrollo docente sostiene la implementación.</figcaption>
+    </figure>
+    <div>
+      <h3 class="h3" style="font-size:var(--fs-h2)">Barreras y facilitadores</h3>
+      <div class="grid g2" style="margin-top:12px">
+        <div>
+          <p class="small" style="font-weight:700;color:var(--bad)"><i class="fa-solid fa-triangle-exclamation"></i> Barreras frecuentes</p>
+          <ul class="small muted" style="padding-left:18px;margin:0">
+            <li>Calendarios y mallas incompatibles.</li>
+            <li>Estereotipos y jerarquías profesionales.</li>
+            <li>Evaluación solo disciplinar.</li>
+          </ul>
+        </div>
+        <div>
+          <p class="small" style="font-weight:700;color:var(--ok)"><i class="fa-solid fa-circle-check"></i> Facilitadores</p>
+          <ul class="small muted" style="padding-left:18px;margin:0">
+            <li>Apoyo institucional explícito.</li>
+            <li>Docentes formados en facilitación.</li>
+            <li>Simulación y debriefing compartidos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-row"><button class="btn" type="button" data-go="s-formativa">Ir a la evaluación formativa <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</section>
+
+<!-- ============================ 6. EVALUACIÓN FORMATIVA ============================ -->
+<section class="section" id="s-formativa" aria-labelledby="t-formativa">
+  <div class="eyebrow"><span class="num">05</span>Evaluación formativa</div>
+  <h1 class="h1" id="t-formativa">Practica antes de la evaluación</h1>
+  <hr class="h1-rule">
+  <p class="lead">Esta actividad no se califica. Úsala para identificar qué conceptos conviene repasar en el video.</p>
+  <div class="embed game embed-center" style="margin-top:22px">
+    <iframe allow="fullscreen; autoplay; allow-top-navigation-by-user-activation" allowfullscreen frameborder="0" title="Juego Educaplay: Educación interprofesional en salud" src="https://es.educaplay.com/juego/30892063-educacion_interprofesional_en_salud.html" loading="lazy"></iframe>
+  </div>
+  <p class="small muted" style="margin-top:10px">¿No carga? <a href="https://es.educaplay.com/juego/30892063-educacion_interprofesional_en_salud.html" target="_blank" rel="noopener">Abrir el juego en una pestaña nueva</a>.</p>
+  <div class="btn-row"><button class="btn" type="button" data-go="s-evaluacion">Ir a la evaluación <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</section>
+
+<!-- ============================ 7. EVALUACIÓN SUMATIVA ============================ -->
+<section class="section" id="s-evaluacion" aria-labelledby="t-evaluacion">
+  <div class="eyebrow"><span class="num">06</span>Evaluación</div>
+  <h1 class="h1" id="t-evaluacion">Comprobando lo aprendido</h1>
+  <hr class="h1-rule">
+  <div class="callout">
+    <p>9 ítems: 3 de opción múltiple, 2 de verdadero o falso, 2 de arrastrar y soltar y 2 de relacionar columnas. Comprueba cada respuesta para ver la retroalimentación. Al terminar, calcula tu calificación. <b>Aprobación: 70 %.</b> Puedes reintentar si no alcanzas el mínimo.</p>
+  </div>
+  <p class="small muted" id="attemptInfo"></p>
+  <div id="evalBox"></div>
+  <div class="btn-row">
+    <button class="btn" type="button" id="btnGrade"><i class="fa-solid fa-calculator" aria-hidden="true"></i>Calcular calificación</button>
+  </div>
+  <div id="evalResult" style="margin-top:24px"></div>
+</section>
+
+<!-- ============================ 8. SÍNTESIS ============================ -->
+<section class="section" id="s-sintesis" aria-labelledby="t-sintesis">
+  <div class="eyebrow"><span class="num">07</span>Síntesis</div>
+  <h1 class="h1" id="t-sintesis">Ideas clave</h1>
+  <hr class="h1-rule">
+  <div class="split" style="align-items:start">
+    <div class="ideas">
+      <div class="idea"><div><h3>Interactuar es la condición</h3><p class="just">Reunir carreras en una sala es multiprofesional. La EIP exige aprender con, de y sobre las otras profesiones.</p></div></div>
+      <div class="idea"><div><h3>Conocer el rol del otro</h3><p class="just">Comprender las funciones de cada profesión reduce estereotipos, mejora derivaciones y fortalece la seguridad del paciente.</p></div></div>
+      <div class="idea"><div><h3>Decidir en conjunto</h3><p class="just">La resolución colaborativa de problemas se entrena con casos reales o simulados y debriefing compartido.</p></div></div>
+      <div class="idea"><div><h3>Se sostiene institucionalmente</h3><p class="just">Calendarios coordinados, desarrollo docente y evaluación de competencias interprofesionales hacen viable la implementación.</p></div></div>
+    </div>
+    <div>
+      <div class="card glass">
+        <div class="eyebrow"><i class="fa-solid fa-headphones" aria-hidden="true"></i>Pódcast de la cápsula</div>
+        <p class="small muted">Escucha la síntesis en audio. Si el reproductor no carga, ábrelo en Google Drive.</p>
+        <div class="embed audio">
+          <iframe src="https://drive.google.com/file/d/1JcjKPJu_YzcbU0LF9H8HesBoDv1cJWch/preview" title="Pódcast: Educación interprofesional universitaria" allow="autoplay" loading="lazy"></iframe>
+        </div>
+        <p class="small" style="margin:10px 0 0"><a href="https://drive.google.com/file/d/1JcjKPJu_YzcbU0LF9H8HesBoDv1cJWch/view?usp=sharing" target="_blank" rel="noopener"><i class="fa-brands fa-google-drive" aria-hidden="true"></i> Abrir pódcast en Google Drive</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="h2">Infografía: del aula a la atención</h2>
+  <div class="info" role="list">
+    <div class="info-step" role="listitem"><div class="big"><i class="fa-solid fa-users" aria-hidden="true"></i>Con</div><p>Aprender junto a estudiantes de otras carreras en una actividad común.</p></div>
+    <div class="info-step" role="listitem"><div class="big"><i class="fa-solid fa-arrow-right-arrow-left" aria-hidden="true"></i>De</div><p>Aprender de los saberes y razonamientos de las otras profesiones.</p></div>
+    <div class="info-step" role="listitem"><div class="big"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>Sobre</div><p>Comprender roles, alcances y límites de cada disciplina.</p></div>
+    <div class="info-step" role="listitem"><div class="big"><i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>Mejor</div><p>Colaboración efectiva, decisiones compartidas y atención más segura.</p></div>
+  </div>
+  <div class="btn-row"><button class="btn" type="button" data-go="s-cierre">Ir al cierre <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+</section>
+
+<!-- ============================ 9. CIERRE ============================ -->
+<section class="section" id="s-cierre" aria-labelledby="t-cierre">
+  <div class="eyebrow"><span class="num">08</span>Cierre</div>
+  <h1 class="h1" id="t-cierre">Reflexión metacognitiva</h1>
+  <hr class="h1-rule">
+  <p class="lead">Responde con tus palabras. Tus respuestas se incluyen en el reporte para el tutor y la tercera aparece en tu certificado como compromiso profesional.</p>
+
+  <form id="reflForm" novalidate style="margin-top:24px" class="prose">
+    <div class="field">
+      <label for="r1">1. ¿Qué idea tenías sobre los roles de las otras profesiones antes de esta cápsula y qué cambió?</label>
+      <textarea class="input" id="r1" maxlength="1500"></textarea>
+      <span class="hint" id="h-r1"></span>
+    </div>
+    <div class="field">
+      <label for="r2">2. ¿Qué actividad interprofesional podrías implementar en tu asignatura el próximo semestre y con qué carrera?</label>
+      <textarea class="input" id="r2" maxlength="1500"></textarea>
+      <span class="hint" id="h-r2"></span>
+    </div>
+    <div class="field">
+      <label for="r3">3. Compromiso profesional: ¿a qué te comprometes para fortalecer la colaboración interprofesional en tu docencia?</label>
+      <textarea class="input" id="r3" maxlength="600"></textarea>
+      <span class="hint" id="h-r3"></span>
+    </div>
+    <button class="btn" type="submit"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>Guardar respuestas</button>
+  </form>
+
+  <h2 class="h2">Resultados, reporte y certificado</h2>
+  <div class="grid g3">
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-file-shield" aria-hidden="true"></i></div>
+      <h3 class="h3">Reporte protegido</h3>
+      <p>Descarga un archivo HTML cifrado con tus respuestas del video-quiz, de la evaluación y de la reflexión. Envíalo por correo a tu tutor.</p>
+      <button class="btn sm" type="button" id="btnReport"><i class="fa-solid fa-download" aria-hidden="true"></i>Descargar reporte</button>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+      <h3 class="h3">Certificado PDF</h3>
+      <p>Disponible al aprobar la evaluación con 70 % o más.</p>
+      <button class="btn sm" type="button" id="btnCert"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i>Descargar certificado</button>
+    </article>
+    <article class="card">
+      <div class="ic"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+      <h3 class="h3">Vista docente</h3>
+      <p>Revisión en pantalla de los resultados. Requiere clave del tutor.</p>
+      <button class="btn sm ghost" type="button" id="btnTeacher"><i class="fa-solid fa-user-lock" aria-hidden="true"></i>Abrir vista docente</button>
+    </article>
+  </div>
+  <div id="closeSummary" style="margin-top:24px"></div>
+</section>
+</main>
+
+<footer class="foot">
+  <span>Universidad de Los Lagos · Cápsula de Educación Interprofesional</span>
+  <span>Video: Dr. César Orsini, «Educación Interprofesional: aprendiendo con, desde y sobre otras disciplinas».</span>
+</footer>
+
+<!-- ============================ ELEMENTOS FLOTANTES ============================ -->
+<nav class="dock" id="dock" aria-label="Secciones de la cápsula" hidden>
+  <button class="nav-arrow" id="navPrev" type="button" aria-label="Sección anterior"><i class="fa-solid fa-chevron-left"></i></button>
+  <div class="dock-tabs" role="tablist" id="dockTabs"></div>
+  <button class="nav-arrow" id="navNext" type="button" aria-label="Sección siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+</nav>
+
+<a class="chatbot" id="chatbot" href="https://notebooklm.google.com/notebook/74d75686-1215-4007-bb8c-432f9a83abd3/preview" target="_blank" rel="noopener" aria-label="Chatbot de ayuda (abre en una pestaña nueva)">
+  <span class="bot" aria-hidden="true"><i class="fa-solid fa-robot"></i></span><span class="lbl">Chatbot de ayuda</span>
+</a>
+
+<div class="toast-box" id="toasts" aria-live="polite"></div>
+
+<!-- Modal genérico -->
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box" id="modalBox">
+    <h2 id="modalTitle"></h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Escenario oculto para el certificado -->
+<div id="certStage" aria-hidden="true"></div>
+
+<script>
+/* =======================================================================
+   CÁPSULA EIP · ULagos — lógica principal
+   Índice:
+   0. Configuración editable (secciones, tiempos del video, preguntas)
+   1. Utilidades y almacenamiento
+   2. Navegación y progreso
+   3. Formulario de ingreso
+   4. Motor de preguntas (OM, V/F, arrastrar y soltar, relacionar)
+   5. Video-quiz con YouTube IFrame API
+   6. Evaluación sumativa
+   7. Reflexión metacognitiva
+   8. Reporte HTML cifrado (clave docente) y vista docente
+   9. Certificado PDF (html2pdf.js)
+   ======================================================================= */
+(function(){
+'use strict';
+
+/* ---------------- 0. CONFIGURACIÓN ---------------- */
+const STORE_KEY = 'eip_ulagos_v1';
+const TEACHER_KEY = '1234';            // clave docente del reporte
+const PASS_MIN = 0.70;                 // 70 % para aprobar
+const VIDEO_ID = 'LOXWQi3fw5M';
+
+const SECTIONS = [
+  {id:'s-portada',    label:'Portada',      icon:'fa-house'},
+  {id:'s-intro',      label:'Introducción', icon:'fa-book-open'},
+  {id:'s-activacion', label:'Activación',   icon:'fa-bolt'},
+  {id:'s-desarrollo', label:'Desarrollo',   icon:'fa-circle-play'},
+  {id:'s-formativa',  label:'Formativa',    icon:'fa-puzzle-piece'},
+  {id:'s-evaluacion', label:'Evaluación',   icon:'fa-clipboard-check'},
+  {id:'s-sintesis',   label:'Síntesis',     icon:'fa-lightbulb'},
+  {id:'s-cierre',     label:'Cierre',       icon:'fa-flag-checkered'}
+];
+
+/* Preguntas del video. "t" = segundo exacto de pausa.
+   Si el contenido del video se trata algo más tarde, ajusta aquí el tiempo. */
+const VIDEO_QUIZ = [
+  { id:'v1', t:180, type:'mc', label:'3:00', level:'Comprensión',
+    prompt:'Según lo planteado en el video, ¿qué caracteriza a la educación interprofesional?',
+    options:[
+      'Dos o más profesiones aprenden con, de y sobre las otras para mejorar la colaboración y la calidad de la atención.',
+      'Estudiantes de distintas carreras asisten a la misma clase expositiva sin interactuar entre sí.',
+      'Una profesión enseña sus técnicas a otra para que pueda reemplazarla en la atención.',
+      'Cada carrera estudia por separado los mismos contenidos de salud.'],
+    answer:0,
+    fbOk:'Correcto. La EIP se define por la interacción: aprender con, de y sobre otras profesiones con un fin colaborativo.',
+    fbBad:'Revisa la definición: compartir aula no basta; la EIP exige interacción con el propósito de mejorar la colaboración y la atención.'
+  },
+  { id:'v2', t:450, type:'mc', label:'7:30', level:'Comprensión',
+    prompt:'¿Cuál es el propósito principal de incorporar la educación interprofesional en el pregrado?',
+    options:[
+      'Reducir las horas docentes al juntar asignaturas de distintas carreras.',
+      'Preparar profesionales listos para la práctica colaborativa, que mejore los resultados en salud y la seguridad de las personas.',
+      'Unificar los perfiles de egreso para que todas las profesiones cumplan las mismas funciones.',
+      'Establecer una jerarquía clara entre las profesiones del equipo.'],
+    answer:1,
+    fbOk:'Correcto. La EIP prepara para la práctica colaborativa, con impacto en la calidad y seguridad de la atención.',
+    fbBad:'La EIP no busca ahorrar horas ni igualar perfiles: busca preparar para colaborar y mejorar la atención.'
+  },
+  { id:'v3', t:660, type:'dd', label:'11:00', level:'Aplicación',
+    prompt:'Clasifica cada actividad según corresponda a un enfoque multiprofesional o interprofesional.',
+    zones:['Multiprofesional (lado a lado)','Interprofesional (con, de y sobre)'],
+    items:[
+      {text:'Clase magistral compartida entre carreras, sin trabajo conjunto', zone:0},
+      {text:'Simulación clínica en que enfermería, obstetricia y fonoaudiología resuelven un caso juntas', zone:1},
+      {text:'Cada carrera entrega su informe por separado al mismo tutor', zone:0},
+      {text:'Debriefing en que cada profesión explica su razonamiento a las otras', zone:1},
+      {text:'Plan de intervención familiar construido por trabajo social y pedagogía', zone:1},
+      {text:'Cursos paralelos que comparten solo el calendario', zone:0}
+    ],
+    fbOk:'Muy bien. La diferencia está en la interacción y en el aprendizaje mutuo.',
+    fbBad:'Recuerda: si las carreras solo coinciden en espacio o tiempo, es multiprofesional; si interactúan y aprenden unas de otras, es interprofesional.'
+  },
+  { id:'v4', t:900, type:'match', label:'15:00', level:'Comprensión',
+    prompt:'Relaciona cada dominio de competencia interprofesional con su descripción.',
+    pairs:[
+      ['Valores y ética','Respeto mutuo y valores compartidos centrados en la persona'],
+      ['Roles y responsabilidades','Conocer el propio rol y el de otras profesiones para responder a las necesidades de salud'],
+      ['Comunicación interprofesional','Comunicarse de forma receptiva y responsable con personas, familias y equipo'],
+      ['Equipos y trabajo en equipo','Aplicar la dinámica de equipos para planificar, decidir y evaluar la atención']
+    ],
+    fbOk:'Correcto. Estos cuatro dominios orientan el diseño y la evaluación de actividades interprofesionales.',
+    fbBad:'Revisa los cuatro dominios en la sección de desarrollo, bajo el video.'
+  }
+];
+
+/* Evaluación sumativa: 3 OM, 2 V/F, 2 arrastrar, 2 relacionar */
+const EVAL = [
+  { id:'e1', type:'mc', level:'Comprensión',
+    prompt:'Un equipo de CESFAM formado por matrona, enfermera y trabajadora social atiende a una gestante adolescente. ¿Qué acción refleja mejor la práctica colaborativa?',
+    options:[
+      'Cada profesional registra sus indicaciones en la ficha y la usuaria decide a quién seguir.',
+      'La matrona define el plan y deriva a las demás solo si surge una complicación.',
+      'El equipo elabora en conjunto un plan con metas compartidas y responsabilidades acordadas con la usuaria.',
+      'Se programa una consulta con cada profesional en días distintos para no duplicar esfuerzos.'],
+    answer:2,
+    fbOk:'Correcto. La práctica colaborativa implica metas comunes, roles acordados y participación de la persona.',
+    fbBad:'Atender en paralelo o derivar no es colaborar: falta la construcción conjunta del plan.'
+  },
+  { id:'e2', type:'mc', level:'Aplicación',
+    prompt:'Debes diseñar una actividad para estudiantes de Fonoaudiología y Enfermería sobre un usuario con disfagia tras un ACV. ¿Qué diseño cumple mejor los criterios de EIP?',
+    options:[
+      'Una clase de fonoaudiología sobre disfagia a la que también asisten estudiantes de enfermería.',
+      'Una simulación en que ambos grupos acuerdan un plan de alimentación segura, seguida de un debriefing conjunto.',
+      'Un cuestionario en línea que cada carrera responde por separado.',
+      'Una guía escrita por enfermería que fonoaudiología revisa al final del semestre.'],
+    answer:1,
+    fbOk:'Correcto. Hay interacción, decisión compartida y reflexión conjunta sobre los roles.',
+    fbBad:'Las otras opciones mantienen a las carreras en paralelo. La EIP requiere resolver juntos y reflexionar juntos.'
+  },
+  { id:'e3', type:'mc', level:'Comprensión',
+    prompt:'¿Por qué es relevante aprender «sobre» las otras profesiones?',
+    options:[
+      'Porque permite que cada profesional realice las funciones de los demás cuando falta personal.',
+      'Porque reduce estereotipos, aclara roles y mejora la coordinación y la derivación.',
+      'Porque reemplaza la formación disciplinar específica de cada carrera.',
+      'Porque facilita definir quién lidera siempre el equipo.'],
+    answer:1,
+    fbOk:'Correcto. Conocer alcances y límites de cada profesión mejora la coordinación y la seguridad.',
+    fbBad:'Aprender sobre otras profesiones no busca reemplazarlas ni jerarquizar: busca comprender sus roles.'
+  },
+  { id:'e4', type:'tf', level:'Comprensión',
+    prompt:'La educación interprofesional se logra con solo reunir a estudiantes de distintas carreras en una misma sala.',
+    answer:false,
+    fbOk:'Correcto. Compartir espacio es multiprofesional; la EIP requiere interacción intencionada.',
+    fbBad:'Es falso: sin interacción no hay aprendizaje con, de y sobre las otras profesiones.'
+  },
+  { id:'e5', type:'tf', level:'Comprensión',
+    prompt:'La Organización Mundial de la Salud promueve la educación interprofesional como estrategia para fortalecer los sistemas de salud y la práctica colaborativa.',
+    answer:true,
+    fbOk:'Correcto. El marco de acción de la OMS (2010) vincula EIP y práctica colaborativa con mejores resultados en salud.',
+    fbBad:'Es verdadero: la OMS publicó en 2010 un marco de acción sobre EIP y práctica colaborativa.'
+  },
+  { id:'e6', type:'dd', level:'Aplicación',
+    prompt:'Clasifica cada condición como barrera o facilitador para implementar EIP en la universidad.',
+    zones:['Barrera','Facilitador'],
+    items:[
+      {text:'Calendarios académicos incompatibles entre carreras', zone:0},
+      {text:'Apoyo institucional y curricular explícito', zone:1},
+      {text:'Estereotipos y jerarquías entre profesiones', zone:0},
+      {text:'Formación docente en facilitación interprofesional', zone:1},
+      {text:'Espacios de simulación compartidos', zone:1},
+      {text:'Evaluación centrada solo en competencias disciplinares', zone:0}
+    ],
+    fbOk:'Muy bien. Identificar barreras y facilitadores es el primer paso para gestionar la implementación.',
+    fbBad:'Revisa: lo que separa a las carreras o refuerza jerarquías es barrera; lo que crea condiciones comunes es facilitador.'
+  },
+  { id:'e7', type:'dd', level:'Aplicación',
+    prompt:'Caso: niño de 7 años con trastorno del lenguaje y familia en situación de vulnerabilidad. Asigna cada acción a la profesión que la lidera.',
+    zones:['Fonoaudiología','Trabajo Social','Pedagogía'],
+    items:[
+      {text:'Evaluar y tratar el desarrollo del lenguaje', zone:0},
+      {text:'Gestionar redes de apoyo y beneficios sociales para la familia', zone:1},
+      {text:'Adecuar estrategias de aula y evaluación diferenciada', zone:2},
+      {text:'Diagnosticar el contexto familiar y comunitario', zone:1},
+      {text:'Orientar ejercicios de estimulación en el hogar', zone:0},
+      {text:'Coordinar con el equipo PIE del establecimiento', zone:2}
+    ],
+    fbOk:'Correcto. Cada profesión lidera acciones distintas, pero todas convergen en un plan común.',
+    fbBad:'Revisa los roles: lenguaje (Fonoaudiología), redes y contexto (Trabajo Social), aula e inclusión (Pedagogía).'
+  },
+  { id:'e8', type:'match', level:'Comprensión',
+    prompt:'Relaciona cada profesión con su aporte principal al equipo.',
+    pairs:[
+      ['Enfermería','Gestión del cuidado y continuidad de la atención'],
+      ['Obstetricia','Salud sexual y reproductiva y cuidado del binomio madre-hijo'],
+      ['Fonoaudiología','Comunicación humana, lenguaje, voz y deglución'],
+      ['Trabajo Social','Determinantes sociales, redes de apoyo y derechos'],
+      ['Pedagogía','Procesos de enseñanza-aprendizaje y educación para la salud']
+    ],
+    fbOk:'Correcto. Reconocer el aporte de cada profesión es la base del trabajo interprofesional.',
+    fbBad:'Revisa las tarjetas de profesiones en la sección de desarrollo.'
+  },
+  { id:'e9', type:'match', level:'Comprensión',
+    prompt:'Relaciona cada concepto con su definición.',
+    pairs:[
+      ['Multiprofesional','Profesiones que trabajan en paralelo, cada una desde su disciplina'],
+      ['Interprofesional','Profesiones que interactúan y aprenden unas de otras'],
+      ['Práctica colaborativa','Profesionales que trabajan con personas y familias para entregar la mejor atención'],
+      ['Debriefing','Conversación reflexiva estructurada posterior a una experiencia']
+    ],
+    fbOk:'Correcto. Dominar estos conceptos te permite diseñar actividades con intención interprofesional.',
+    fbBad:'Revisa las distinciones al inicio de la sección de desarrollo.'
+  }
+];
+
+const REFLECTIONS = [
+  {id:'r1', q:'¿Qué idea tenías sobre los roles de las otras profesiones antes de esta cápsula y qué cambió?'},
+  {id:'r2', q:'¿Qué actividad interprofesional podrías implementar en tu asignatura el próximo semestre y con qué carrera?'},
+  {id:'r3', q:'Compromiso profesional para fortalecer la colaboración interprofesional en tu docencia.'}
+];
+
+/* ---------------- 1. UTILIDADES Y ALMACENAMIENTO ---------------- */
+const $ = (s,c=document)=>c.querySelector(s);
+const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+const esc = s => String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const shuffle = a => { const b=a.slice(); for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];} return b; };
+const fmtDate = d => new Date(d).toLocaleString('es-CL',{dateStyle:'long',timeStyle:'short'});
+const LETTERS = 'ABCDEFGH';
+
+const defaultState = () => ({ user:null, current:'s-portada', visited:[], video:{}, eval:{answers:{}, attempts:0, last:null, best:null}, refl:{}, finishedAt:null });
+let S = defaultState();
+
+function load(){
+  try{ const raw = localStorage.getItem(STORE_KEY); if(raw){ S = Object.assign(defaultState(), JSON.parse(raw)); } }
+  catch(e){ S = defaultState(); }
+}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(S)); }catch(e){ /* almacenamiento no disponible: la cápsula sigue funcionando en memoria */ }
+}
+
+function toast(msg, kind=''){
+  const t=document.createElement('div'); t.className='toast '+kind;
+  const ic = kind==='ok'?'fa-circle-check':kind==='bad'?'fa-circle-exclamation':'fa-circle-info';
+  t.innerHTML='<i class="fa-solid '+ic+'" aria-hidden="true"></i><span>'+esc(msg)+'</span>';
+  $('#toasts').appendChild(t); setTimeout(()=>t.remove(),4200);
+}
+
+/* Modal genérico (reemplaza alert/confirm/prompt) */
+let lastFocus=null;
+function openModal(title, html, wide=false){
+  lastFocus=document.activeElement;
+  $('#modalTitle').textContent=title; $('#modalBody').innerHTML=html;
+  $('#modalBox').classList.toggle('wide',wide);
+  $('#modal').hidden=false;
+  const f=$('#modalBody input,#modalBody button'); if(f) f.focus();
+}
+function closeModal(){ $('#modal').hidden=true; if(lastFocus) lastFocus.focus(); }
+$('#modal').addEventListener('click',e=>{ if(e.target.id==='modal') closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !$('#modal').hidden) closeModal(); });
+
+/* Imágenes: si una URL de Unsplash falla, se reemplaza por una ilustración SVG institucional */
+const FALLBACK_IMG = 'data:image/svg+xml;utf8,'+encodeURIComponent(
+ '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#DCEEEF"/>'+
+ '<g fill="none" stroke="#055E61" stroke-width="3"><circle cx="140" cy="130" r="42"/><circle cx="200" cy="130" r="42"/><circle cx="260" cy="130" r="42"/><circle cx="170" cy="182" r="42"/><circle cx="230" cy="182" r="42"/></g>'+
+ '<text x="200" y="40" text-anchor="middle" font-family="Arial" font-size="16" fill="#055E61">Educación Interprofesional</text></svg>');
+$$('img[data-fallback]').forEach(img=>img.addEventListener('error',()=>{ img.src=FALLBACK_IMG; },{once:true}));
+
+/* ---------------- 2. NAVEGACIÓN Y PROGRESO ---------------- */
+function buildDock(){
+  $('#dockTabs').innerHTML = SECTIONS.map(s=>
+    '<button class="tab" role="tab" type="button" data-go="'+s.id+'" aria-controls="'+s.id+'" aria-label="'+s.label+'" title="'+s.label+'"><i class="fa-solid '+s.icon+'" aria-hidden="true"></i><span>'+s.label+'</span></button>').join('');
+}
+function go(id, focus=true){
+  if(!S.user && id!=='s-ingreso') id='s-ingreso';
+  $$('.section').forEach(s=>s.classList.toggle('active', s.id===id));
+  $('#dock').hidden = (id==='s-ingreso');
+  $('#chatbot').style.display = 'flex';
+  if(id!=='s-ingreso'){
+    S.current=id; if(!S.visited.includes(id)) S.visited.push(id); save();
+  }
+  $$('.tab').forEach(t=>{
+    const on=t.dataset.go===id; t.setAttribute('aria-selected',on); t.classList.toggle('visited',S.visited.includes(t.dataset.go));
+    if(on) t.scrollIntoView({block:'nearest',inline:'center'});
+  });
+  const idx=SECTIONS.findIndex(s=>s.id===id);
+  $('#navPrev').disabled = idx<=0; $('#navNext').disabled = idx<0 || idx>=SECTIONS.length-1;
+  updateProgress();
+  if(id!=='s-desarrollo') pauseVideoSafe();
+  if(id==='s-cierre') renderCloseSummary();
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(focus){ const h=$('#'+id+' h1'); if(h){ h.setAttribute('tabindex','-1'); h.focus({preventScroll:true}); } }
+  try{ history.replaceState(null,'','#'+id.replace('s-','')); }catch(e){}
+}
+function updateProgress(){
+  const pct = Math.round(S.visited.filter(v=>SECTIONS.some(s=>s.id===v)).length / SECTIONS.length * 100);
+  $('#progressFill').style.width=pct+'%'; $('#progressBar').setAttribute('aria-valuenow',pct);
+}
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-go]'); if(b){ e.preventDefault(); go(b.dataset.go); } });
+$('#navPrev').addEventListener('click',()=>{ const i=SECTIONS.findIndex(s=>s.id===S.current); if(i>0) go(SECTIONS[i-1].id); });
+$('#navNext').addEventListener('click',()=>{ const i=SECTIONS.findIndex(s=>s.id===S.current); if(i<SECTIONS.length-1) go(SECTIONS[i+1].id); });
+
+/* Borrar datos */
+$('#btnClear').addEventListener('click',()=>{
+  openModal('Borrar datos guardados',
+    '<p>Se eliminarán tus datos de ingreso, respuestas, calificaciones y reflexiones guardadas en este navegador. Esta acción no se puede deshacer.</p>'+
+    '<div class="btn-row"><button class="btn" id="mcYes" type="button" style="background:var(--bad);border-color:var(--bad)"><i class="fa-solid fa-trash-can"></i>Borrar todo</button><button class="btn ghost" id="mcNo" type="button">Cancelar</button></div>');
+  $('#mcNo').onclick=closeModal;
+  $('#mcYes').onclick=()=>{ try{localStorage.removeItem(STORE_KEY);}catch(e){} S=defaultState(); closeModal(); location.hash=''; location.reload(); };
+});
+
+/* ---------------- 3. FORMULARIO DE INGRESO ---------------- */
+function rutValid(r){
+  const c=r.replace(/[^0-9kK]/g,'').toUpperCase(); if(c.length<8||c.length>9) return false;
+  const body=c.slice(0,-1), dv=c.slice(-1); let sum=0,m=2;
+  for(let i=body.length-1;i>=0;i--){ sum+=parseInt(body[i],10)*m; m=m===7?2:m+1; }
+  const r11=11-(sum%11); const exp = r11===11?'0':r11===10?'K':String(r11);
+  return exp===dv;
+}
+function rutFormat(r){
+  const c=r.replace(/[^0-9kK]/g,'').toUpperCase(); if(c.length<2) return r;
+  const body=c.slice(0,-1).replace(/\B(?=(\d{3})+(?!\d))/g,'.'); return body+'-'+c.slice(-1);
+}
+function setField(input,hint,ok,msg){
+  input.classList.toggle('valid',ok===true); input.classList.toggle('invalid',ok===false);
+  input.setAttribute('aria-invalid', ok===false?'true':'false');
+  hint.textContent=msg||''; hint.className='hint '+(ok===false?'err':ok===true?'ok':'');
+}
+const V = {
+  name:()=>{ const v=$('#fName').value.trim(); const ok=v.split(/\s+/).length>=2 && v.length>=5;
+    setField($('#fName'),$('#hName'),ok, ok?'Nombre válido.':'Escribe tu nombre y al menos un apellido.'); return ok; },
+  email:()=>{ const v=$('#fEmail').value.trim(); const ok=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    setField($('#fEmail'),$('#hEmail'),ok, ok?'Correo válido.':'Ingresa un correo con formato nombre@dominio.cl.'); return ok; },
+  career:()=>{ const ok=!!$('#fCareer').value; setField($('#fCareer'),$('#hCareer'),ok, ok?'':'Selecciona una carrera.'); return ok; },
+  rut:()=>{ const v=$('#fRut').value.trim(); if(!v){ setField($('#fRut'),$('#hRut'),null,'Si lo ingresas, se valida el dígito verificador.'); return true; }
+    const ok=rutValid(v); if(ok) $('#fRut').value=rutFormat(v);
+    setField($('#fRut'),$('#hRut'),ok, ok?'RUT válido.':'El dígito verificador no coincide. Revisa el RUT o deja el campo vacío.'); return ok; }
+};
+$('#fName').addEventListener('blur',V.name); $('#fEmail').addEventListener('blur',V.email);
+$('#fCareer').addEventListener('change',V.career); $('#fRut').addEventListener('blur',V.rut);
+$('#loginForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const ok=[V.name(),V.email(),V.career(),V.rut()].every(Boolean);
+  if(!ok){ toast('Revisa los campos marcados en rojo.','bad'); const f=$('#loginForm .invalid'); if(f) f.focus(); return; }
+  S.user={ name:$('#fName').value.trim(), email:$('#fEmail').value.trim(), career:$('#fCareer').value, rut:$('#fRut').value.trim(), startedAt:new Date().toISOString() };
+  save(); paintUser(); toast('Bienvenido/a, '+S.user.name.split(' ')[0]+'.','ok'); go('s-portada');
+});
+function paintUser(){ $('#userChip').textContent = S.user ? S.user.name+' · '+S.user.career : ''; }
+
+/* ---------------- 4. MOTOR DE PREGUNTAS ----------------
+   renderQuestion(host, q, {saved, onDone, tagText})
+   Devuelve resultado: {id,type,prompt,response,correct,score(0..1)} */
+const TYPE_LABEL={mc:'Opción múltiple',tf:'Verdadero o falso',dd:'Arrastrar y soltar',match:'Relacionar columnas'};
+
+function renderQuestion(host,q,opt={}){
+  const wrap=document.createElement('div'); wrap.className='q'; wrap.id='q-'+q.id;
+  wrap.innerHTML='<div class="q-head"><span class="q-tag">'+(opt.tagText||TYPE_LABEL[q.type])+'</span>'+(q.level?'<span class="q-lvl">Nivel: '+q.level+'</span>':'')+'</div>'+
+    '<p class="q-prompt" id="p-'+q.id+'">'+esc(q.prompt)+'</p><div class="q-body"></div><div class="q-actions"><button class="btn sm" type="button" data-check><i class="fa-solid fa-check"></i>Comprobar</button></div><div class="q-fb" aria-live="polite"></div>';
+  host.appendChild(wrap);
+  const body=$('.q-body',wrap), btn=$('[data-check]',wrap);
+  let getResponse, grade, showSaved;
+
+  if(q.type==='mc' || q.type==='tf'){
+    const options = q.type==='tf' ? ['Verdadero','Falso'] : q.options;
+    const order = q.type==='tf' ? [0,1] : (opt.saved ? opt.saved.order : shuffle(options.map((_,i)=>i)));
+    body.innerHTML='<div class="opts" role="radiogroup" aria-labelledby="p-'+q.id+'">'+order.map((oi,k)=>
+      '<button type="button" class="opt" role="radio" aria-checked="false" data-i="'+oi+'"><span class="k">'+LETTERS[k]+'</span><span>'+esc(options[oi])+'</span></button>').join('')+'</div>';
+    let sel=null;
+    $$('.opt',body).forEach(b=>b.addEventListener('click',()=>{
+      if(wrap.classList.contains('locked')) return;
+      sel=+b.dataset.i; $$('.opt',body).forEach(x=>x.setAttribute('aria-checked',x===b));
+    }));
+    // navegación con flechas en el grupo de opciones
+    body.addEventListener('keydown',e=>{
+      if(!['ArrowDown','ArrowUp','ArrowRight','ArrowLeft'].includes(e.key)) return;
+      const bs=$$('.opt',body), i=bs.indexOf(document.activeElement); if(i<0) return;
+      e.preventDefault(); const n=bs[(i+(e.key==='ArrowDown'||e.key==='ArrowRight'?1:-1)+bs.length)%bs.length]; n.focus(); n.click();
+    });
+    const correctIdx = q.type==='tf' ? (q.answer?0:1) : q.answer;
+    getResponse=()=>sel;
+    grade=()=>{
+      $$('.opt',body).forEach(b=>{ const i=+b.dataset.i; if(i===correctIdx) b.classList.add('correct'); else if(i===sel) b.classList.add('wrong'); });
+      const ok = sel===correctIdx;
+      return {response:options[sel], expected:options[correctIdx], correct:ok, score:ok?1:0, order};
+    };
+    showSaved=(r)=>{ sel=options.indexOf(r.response); $$('.opt',body).forEach(b=>b.setAttribute('aria-checked',+b.dataset.i===sel)); };
+  }
+
+  else if(q.type==='dd'){
+    const items = q.items.map((it,i)=>({...it,i}));
+    const order = opt.saved ? opt.saved.order : shuffle(items.map(x=>x.i));
+    body.innerHTML='<p class="small muted" style="margin-top:-6px">Arrastra cada ficha a su categoría. En celular: toca una ficha y luego la categoría.</p>'+
+      '<div class="dd-bank" aria-label="Fichas sin clasificar">'+order.map(i=>'<button type="button" class="chip" draggable="true" aria-pressed="false" data-i="'+i+'">'+esc(items[i].text)+'</button>').join('')+'</div>'+
+      '<div class="dd-zones" style="grid-template-columns:repeat('+Math.min(q.zones.length,3)+',minmax(0,1fr))">'+q.zones.map((z,zi)=>
+        '<div class="dd-zone" data-z="'+zi+'" tabindex="0" role="button" aria-label="Categoría: '+esc(z)+'. Presiona Enter para colocar la ficha seleccionada."><h4><i class="fa-solid fa-folder-open" aria-hidden="true"></i>'+esc(z)+'</h4><div class="slots"></div></div>').join('')+'</div>';
+    if(window.matchMedia('(max-width:760px)').matches) $('.dd-zones',body).style.gridTemplateColumns='1fr';
+    const bank=$('.dd-bank',body); let picked=null;
+    const place=(chip,zone)=>{ (zone? $('.slots',zone): bank).appendChild(chip); chip.setAttribute('aria-pressed','false'); picked=null; $$('.dd-zone',body).forEach(z=>z.classList.remove('target')); };
+    body.addEventListener('click',e=>{
+      if(wrap.classList.contains('locked')) return;
+      const chip=e.target.closest('.chip'), zone=e.target.closest('.dd-zone');
+      if(chip){
+        e.stopPropagation();
+        const inZone=chip.closest('.dd-zone');
+        if(inZone && picked && picked!==chip){ place(picked,inZone); return; }   // con una ficha seleccionada, tocar la zona (aunque sea sobre otra ficha) la coloca ahí
+        if(inZone && !picked){ place(chip,null); return; }                       // sin selección, tocar una ficha ubicada la devuelve al banco
+        if(picked===chip){ chip.setAttribute('aria-pressed','false'); picked=null; $$('.dd-zone',body).forEach(z=>z.classList.remove('target')); return; }
+        if(picked) picked.setAttribute('aria-pressed','false');
+        picked=chip; chip.setAttribute('aria-pressed','true'); $$('.dd-zone',body).forEach(z=>z.classList.add('target'));
+        return;
+      }
+      if(zone && picked) place(picked,zone);
+    });
+    body.addEventListener('keydown',e=>{ const zone=e.target.closest('.dd-zone'); if(zone && (e.key==='Enter'||e.key===' ') && picked){ e.preventDefault(); place(picked,zone); } });
+    // Arrastre nativo (escritorio)
+    body.addEventListener('dragstart',e=>{ const c=e.target.closest('.chip'); if(!c||wrap.classList.contains('locked')){e.preventDefault();return;} c.classList.add('dragging'); e.dataTransfer.setData('text/plain',c.dataset.i); e.dataTransfer.effectAllowed='move'; });
+    body.addEventListener('dragend',e=>{ const c=e.target.closest('.chip'); if(c) c.classList.remove('dragging'); });
+    [...$$('.dd-zone',body),bank].forEach(z=>{
+      z.addEventListener('dragover',e=>{ e.preventDefault(); z.classList.add('over'); });
+      z.addEventListener('dragleave',()=>z.classList.remove('over'));
+      z.addEventListener('drop',e=>{ e.preventDefault(); z.classList.remove('over'); const c=$('.chip[data-i="'+e.dataTransfer.getData('text/plain')+'"]',body); if(c) place(c, z.classList.contains('dd-zone')?z:null); });
+    });
+    getResponse=()=> $$('.chip',bank).length ? null : true;
+    grade=()=>{
+      let good=0; const resp=[];
+      $$('.dd-zone',body).forEach(z=>{ const zi=+z.dataset.z; $$('.chip',z).forEach(c=>{ const it=items[+c.dataset.i]; const ok=it.zone===zi; if(ok) good++; c.classList.add(ok?'correct':'wrong'); resp.push(it.text+' → '+q.zones[zi]+(ok?' ✓':' ✗ (correcto: '+q.zones[it.zone]+')')); }); });
+      const score=good/items.length;
+      return {response:resp.join(' | '), expected:items.map(it=>it.text+' → '+q.zones[it.zone]).join(' | '), correct:score===1, score, order, placement:$$('.dd-zone',body).map(z=>$$('.chip',z).map(c=>+c.dataset.i))};
+    };
+    showSaved=(r)=>{ if(r.placement) r.placement.forEach((arr,zi)=>arr.forEach(i=>{ const c=$('.chip[data-i="'+i+'"]',body); if(c) $('.slots',$$('.dd-zone',body)[zi]).appendChild(c); })); };
+  }
+
+  else if(q.type==='match'){
+    const rights = opt.saved ? opt.saved.order : shuffle(q.pairs.map((_,i)=>i));
+    body.innerHTML='<div class="match">'+q.pairs.map((p,i)=>
+      '<div class="match-row" data-i="'+i+'"><label class="left" for="m-'+q.id+'-'+i+'">'+esc(p[0])+'</label><span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>'+
+      '<select class="input" id="m-'+q.id+'-'+i+'"><option value="">Selecciona la descripción…</option>'+rights.map(r=>'<option value="'+r+'">'+esc(q.pairs[r][1])+'</option>').join('')+'</select></div>').join('')+'</div>';
+    getResponse=()=> $$('select',body).every(s=>s.value!=='') ? true : null;
+    grade=()=>{
+      let good=0; const resp=[];
+      $$('.match-row',body).forEach(row=>{ const i=+row.dataset.i, v=+$('select',row).value, ok=v===i; if(ok) good++; row.classList.add(ok?'correct':'wrong');
+        resp.push(q.pairs[i][0]+' → '+q.pairs[v][1]+(ok?' ✓':' ✗')); });
+      const score=good/q.pairs.length;
+      return {response:resp.join(' | '), expected:q.pairs.map(p=>p[0]+' → '+p[1]).join(' | '), correct:score===1, score, order:rights, picks:$$('select',body).map(s=>s.value)};
+    };
+    showSaved=(r)=>{ if(r.picks) $$('select',body).forEach((s,i)=>s.value=r.picks[i]); };
+  }
+
+  function finish(res, fromSaved){
+    wrap.classList.add('locked');
+    $$('select,.chip,.opt',wrap).forEach(el=>{ if(el.tagName==='SELECT') el.disabled=true; else el.setAttribute('aria-disabled','true'); $$('.chip',wrap).forEach(c=>c.draggable=false); });
+    btn.remove();
+    const cls = res.score===1?'ok':res.score>0?'part':'bad';
+    const icon = cls==='ok'?'fa-circle-check':cls==='part'?'fa-circle-half-stroke':'fa-circle-xmark';
+    const head = cls==='ok'?'Respuesta correcta.':cls==='part'?'Parcialmente correcta ('+Math.round(res.score*100)+' %).':'Respuesta incorrecta.';
+    $('.q-fb',wrap).innerHTML='<div class="fb '+cls+'"><i class="fa-solid '+icon+'" aria-hidden="true"></i><div><b>'+head+'</b> '+esc(res.score===1?q.fbOk:q.fbBad)+'</div></div>';
+    if(!fromSaved && opt.onDone) opt.onDone(res);
+  }
+  btn.addEventListener('click',()=>{
+    if(getResponse()===null){ toast(q.type==='dd'?'Ubica todas las fichas antes de comprobar.':q.type==='match'?'Relaciona todas las filas antes de comprobar.':'Selecciona una alternativa.','bad'); return; }
+    const res=grade(); Object.assign(res,{id:q.id,type:q.type,prompt:q.prompt,at:new Date().toISOString()}); finish(res,false);
+  });
+  if(opt.saved){ showSaved(opt.saved); grade(); finish(opt.saved,true); }
+  return wrap;
+}
+
+/* ---------------- 5. VIDEO-QUIZ ----------------
+   Usa la YouTube IFrame API. Un temporizador consulta el tiempo cada 250 ms;
+   al alcanzar un punto de control pendiente pausa el video y muestra la pregunta.
+   Si el usuario adelanta, se vuelve al primer punto pendiente. */
+let player=null, ytReady=false, activeQ=null, pollId=null;
+
+function vqPending(){ return VIDEO_QUIZ.find(q=>!S.video[q.id]); }
+function paintVqStatus(){
+  $('#vqStatus').innerHTML = VIDEO_QUIZ.map((q,i)=>{
+    const done=!!S.video[q.id], now=activeQ&&activeQ.id===q.id;
+    return '<span class="vq-chip '+(done?'done':now?'now':'')+'"><i class="fa-solid '+(done?'fa-circle-check':now?'fa-circle-pause':'fa-clock')+'" aria-hidden="true"></i>Pregunta '+(i+1)+' · '+q.label+
+      (done?' · '+Math.round(S.video[q.id].score*100)+' %':'')+
+      (!ytReady && !done ? ' <button type="button" data-vq="'+q.id+'">Responder</button>':'')+'</span>';
+  }).join('');
+}
+$('#vqStatus').addEventListener('click',e=>{ const b=e.target.closest('[data-vq]'); if(b) showVq(VIDEO_QUIZ.find(q=>q.id===b.dataset.vq)); });
+
+function showVq(q){
+  if(!q || S.video[q.id]) return;
+  activeQ=q; pauseVideoSafe(); paintVqStatus();
+  const panel=$('#vqPanel'); panel.innerHTML='';
+  const box=document.createElement('div'); box.className='vq-panel';
+  box.innerHTML='<div class="vq-panel-head"><i class="fa-solid fa-circle-question" aria-hidden="true"></i>Pregunta del minuto '+q.label+'<span class="vq-pause"><i class="fa-solid fa-pause"></i>Video en pausa</span></div>';
+  panel.appendChild(box);
+  renderQuestion(box,q,{tagText:TYPE_LABEL[q.type],onDone:(res)=>{
+    S.video[q.id]=res; save(); paintVqStatus();
+    const c=document.createElement('div'); c.className='btn-row';
+    c.innerHTML='<button class="btn" type="button" id="vqContinue"><i class="fa-solid fa-play"></i>'+(vqPending()?'Continuar el video':'Terminar y cerrar')+'</button>';
+    box.appendChild(c); $('#vqContinue').focus();
+    $('#vqContinue').onclick=()=>{ activeQ=null; panel.innerHTML=''; paintVqStatus(); if(ytReady && player && player.playVideo) player.playVideo();
+      if(!vqPending()) toast('Video-quiz completado. Tus respuestas quedaron guardadas.','ok'); };
+  }});
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function pauseVideoSafe(){ try{ if(player && player.pauseVideo) player.pauseVideo(); }catch(e){} }
+
+function tick(){
+  if(!player || !player.getCurrentTime) return;
+  let t=0; try{ t=player.getCurrentTime(); }catch(e){ return; }
+  const pend=vqPending();
+  if(activeQ){ // con una pregunta abierta el video no puede avanzar
+    try{ if(player.getPlayerState()===1) player.pauseVideo(); }catch(e){}
+    return;
+  }
+  if(pend && t>=pend.t-0.25){
+    if(t>pend.t+1.5){ try{ player.seekTo(pend.t,true); }catch(e){} } // evita saltarse preguntas
+    showVq(pend);
+  }
+}
+
+function vqFallback(reason){
+  ytReady=false;
+  const isFile = location.protocol==='file:';
+  $('#vqNotice').innerHTML='<div class="callout warn" style="margin-top:14px"><p><b>Modo alternativo activo.</b> '+esc(reason)+
+    (isFile?' YouTube no permite reproducir videos dentro de archivos abiertos directamente desde el computador (file://). Publica la cápsula en un servidor web (por ejemplo, GitHub Pages o el campus virtual) para la pausa automática.':'')+
+    ' Mientras tanto, mira el video y presiona <b>Responder</b> en cada pregunta al llegar al minuto indicado.</p>'+
+    '<p><a href="https://www.youtube.com/watch?v='+VIDEO_ID+'" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Ver el video en YouTube</a></p></div>';
+  // Inserta el iframe original para que, al menos, el video se vea si el navegador lo permite
+  if(!$('#videoBox iframe')){
+    $('#videoBox').innerHTML='<iframe src="https://www.youtube.com/embed/'+VIDEO_ID+'?rel=0&playsinline=1" title="Educación Interprofesional · Dr. César Orsini" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+  }
+  paintVqStatus();
+}
+
+function initYouTube(){
+  paintVqStatus();
+  window.onYouTubeIframeAPIReady=function(){
+    const vars={rel:0,playsinline:1,modestbranding:1,enablejsapi:1};
+    if(/^https?:$/.test(location.protocol)) vars.origin=location.origin;
+    player=new YT.Player('ytPlayer',{
+      videoId:VIDEO_ID, host:'https://www.youtube.com', playerVars:vars,
+      events:{
+        onReady:()=>{ ytReady=true; paintVqStatus(); clearInterval(pollId); pollId=setInterval(tick,250); },
+        onStateChange:(e)=>{ if(e.data===1 && activeQ) player.pauseVideo(); },
+        onError:(e)=>{ vqFallback('El reproductor de YouTube informó un error (código '+e.data+').'); }
+      }
+    });
+  };
+  const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; s.async=true;
+  s.onerror=()=>vqFallback('No fue posible cargar la API de YouTube (conexión o bloqueo de red).');
+  document.head.appendChild(s);
+  setTimeout(()=>{ if(!ytReady) vqFallback('El reproductor tardó demasiado en responder.'); },12000);
+}
+
+/* ---------------- 6. EVALUACIÓN SUMATIVA ---------------- */
+function renderEval(fresh){
+  const box=$('#evalBox'); box.innerHTML='';
+  if(fresh) S.eval.answers={};
+  EVAL.forEach((q,i)=>{
+    const tag=(i+1)+' · '+TYPE_LABEL[q.type];
+    renderQuestion(box,q,{tagText:tag, saved:S.eval.answers[q.id], onDone:(res)=>{ S.eval.answers[q.id]=res; save(); }});
+  });
+  $('#attemptInfo').textContent = S.eval.attempts ? 'Intentos realizados: '+S.eval.attempts+(S.eval.best!=null?' · Mejor resultado: '+Math.round(S.eval.best*100)+' %':'') : '';
+  if(S.eval.last && Object.keys(S.eval.answers).length===EVAL.length) paintResult(S.eval.last);
+  else $('#evalResult').innerHTML='';
+}
+function chileanGrade(p){ // escala 1,0–7,0 con 70 % de exigencia
+  const g = p<PASS_MIN ? 1+3*(p/PASS_MIN) : 4+3*((p-PASS_MIN)/(1-PASS_MIN));
+  return Math.max(1,Math.min(7,g)).toFixed(1).replace('.',',');
+}
+$('#btnGrade').addEventListener('click',()=>{
+  const missing=EVAL.filter(q=>!S.eval.answers[q.id]);
+  if(missing.length){ toast('Faltan '+missing.length+' ítem(s) por comprobar.','bad'); $('#q-'+missing[0].id).scrollIntoView({behavior:'smooth',block:'center'}); return; }
+  const total=EVAL.reduce((a,q)=>a+S.eval.answers[q.id].score,0);
+  const pct=total/EVAL.length;
+  S.eval.attempts++; S.eval.last={pct, points:total, at:new Date().toISOString(), passed:pct>=PASS_MIN, grade:chileanGrade(pct), attempt:S.eval.attempts};
+  if(S.eval.best==null || pct>S.eval.best){ S.eval.best=pct; S.eval.bestDetail={...S.eval.last}; S.eval.bestAnswers=JSON.parse(JSON.stringify(S.eval.answers)); }
+  if(pct>=PASS_MIN && !S.finishedAt) S.finishedAt=new Date().toISOString();
+  save(); paintResult(S.eval.last); $('#attemptInfo').textContent='Intentos realizados: '+S.eval.attempts+' · Mejor resultado: '+Math.round(S.eval.best*100)+' %';
+});
+function paintResult(r){
+  const pct=Math.round(r.pct*100), C=2*Math.PI*54, off=C*(1-r.pct);
+  $('#evalResult').innerHTML='<div class="card"><div class="score">'+
+   '<div class="ring-score"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#EAF2F1" stroke-width="10"/><circle cx="60" cy="60" r="54" fill="none" stroke="'+(r.passed?'#055E61':'#B3261E')+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+off+'"/></svg><div class="v"><div><b>'+pct+'%</b><small>Nota '+r.grade+'</small></div></div></div>'+
+   '<div><span class="status-pill '+(r.passed?'ok':'bad')+'"><i class="fa-solid '+(r.passed?'fa-circle-check':'fa-circle-xmark')+'"></i>'+(r.passed?'Aprobado':'No aprobado')+'</span>'+
+   '<p style="margin:12px 0 4px">Puntaje: <b>'+r.points.toFixed(2).replace('.',',')+' de '+EVAL.length+'</b> · Intento '+r.attempt+' · Mínimo de aprobación: 70 %.</p>'+
+   '<p class="muted small">'+(r.passed?'Felicitaciones. Continúa con la síntesis y el cierre para descargar tu certificado.':'Repasa el video y las tarjetas de la sección de desarrollo antes de reintentar.')+'</p>'+
+   '<div class="btn-row" style="margin-top:12px">'+(r.passed?'<button class="btn" type="button" data-go="s-sintesis">Ir a la síntesis <i class="fa-solid fa-arrow-right"></i></button>':'')+
+   '<button class="btn ghost" type="button" id="btnRetry"><i class="fa-solid fa-rotate-right"></i>'+(r.passed?'Mejorar mi resultado':'Intentar nuevamente')+'</button></div></div></div></div>';
+  $('#btnRetry').onclick=()=>{ S.eval.last=null; renderEval(true); save(); window.scrollTo({top:$('#s-evaluacion').offsetTop-80,behavior:'smooth'}); };
+  $('#evalResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ---------------- 7. REFLEXIÓN METACOGNITIVA ---------------- */
+function loadRefl(){ REFLECTIONS.forEach(r=>{ $('#'+r.id).value=S.refl[r.id]||''; }); }
+$('#reflForm').addEventListener('submit',e=>{
+  e.preventDefault(); let ok=true;
+  REFLECTIONS.forEach(r=>{ const el=$('#'+r.id), v=el.value.trim(), good=v.length>=20;
+    setField(el,$('#h-'+r.id),good, good?'Guardado.':'Escribe al menos 20 caracteres.'); if(good) S.refl[r.id]=v; else ok=false; });
+  S.refl.savedAt=new Date().toISOString(); save();
+  toast(ok?'Respuestas guardadas.':'Algunas respuestas son muy breves; se guardaron las completas.', ok?'ok':'bad');
+  renderCloseSummary();
+});
+REFLECTIONS.forEach(r=>$('#'+r.id).addEventListener('input',e=>{ S.refl[r.id+'_draft']=e.target.value; save(); }));
+
+function renderCloseSummary(){
+  const vDone=VIDEO_QUIZ.filter(q=>S.video[q.id]).length;
+  const best=S.eval.best!=null?Math.round(S.eval.best*100)+' %':'pendiente';
+  const passed=S.eval.best!=null && S.eval.best>=PASS_MIN;
+  const rDone=REFLECTIONS.filter(r=>S.refl[r.id]).length;
+  $('#closeSummary').innerHTML='<div class="callout"><p><b>Estado:</b> video-quiz '+vDone+'/'+VIDEO_QUIZ.length+' · evaluación '+best+(passed?' (aprobada)':'')+' · reflexión '+rDone+'/3.</p></div>';
+  $('#btnCert').disabled=!passed;
+}
+
+/* ---------------- 8. REPORTE ---------------- */
+function reportBody(){
+  const u=S.user||{};
+  const row=(r,q,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(TYPE_LABEL[q.type])+'</td><td>'+esc(q.prompt)+'</td><td>'+(r?esc(r.response):'<i>Sin responder</i>')+'</td><td>'+(r?esc(r.expected||''):'')+'</td><td style="text-align:center">'+(r?Math.round(r.score*100)+' %':'—')+'</td></tr>';
+  const ans = S.eval.bestAnswers || S.eval.answers;
+  const best = S.eval.bestDetail || S.eval.last;
+  return '<h1>Reporte de resultados</h1><p class="sub">Educación Interprofesional Universitaria · Universidad de Los Lagos</p>'+
+  '<table class="kv"><tr><th>Nombre</th><td>'+esc(u.name)+'</td></tr><tr><th>RUT</th><td>'+esc(u.rut||'No informado')+'</td></tr><tr><th>Carrera</th><td>'+esc(u.career)+'</td></tr><tr><th>Correo</th><td>'+esc(u.email)+'</td></tr>'+
+  '<tr><th>Inicio</th><td>'+(u.startedAt?fmtDate(u.startedAt):'—')+'</td></tr><tr><th>Reporte generado</th><td>'+fmtDate(new Date())+'</td></tr>'+
+  '<tr><th>Mejor resultado</th><td>'+(best?Math.round(best.pct*100)+' % · nota '+best.grade+' · '+(best.passed?'APROBADO':'NO APROBADO')+' · intento '+best.attempt+' de '+S.eval.attempts:'Evaluación no rendida')+'</td></tr></table>'+
+  '<h2>Video-quiz</h2><table><thead><tr><th>#</th><th>Tipo</th><th>Pregunta</th><th>Respuesta</th><th>Respuesta esperada</th><th>Logro</th></tr></thead><tbody>'+VIDEO_QUIZ.map((q,i)=>row(S.video[q.id],q,i)).join('')+'</tbody></table>'+
+  '<h2>Comprobando lo aprendido (mejor intento)</h2><table><thead><tr><th>#</th><th>Tipo</th><th>Pregunta</th><th>Respuesta</th><th>Respuesta esperada</th><th>Logro</th></tr></thead><tbody>'+EVAL.map((q,i)=>row(ans[q.id],q,i)).join('')+'</tbody></table>'+
+  '<h2>Reflexión metacognitiva</h2>'+REFLECTIONS.map((r,i)=>'<div class="refl"><b>'+(i+1)+'. '+esc(r.q)+'</b><p>'+esc(S.refl[r.id]||'Sin respuesta guardada.')+'</p></div>').join('');
+}
+const REPORT_CSS='body{font-family:Roboto,Arial,sans-serif;color:#222;background:#F8FAFA;margin:0;padding:32px 16px}.wrap{max-width:1000px;margin:0 auto;background:#fff;border:1px solid #D9DEDE;border-top:6px solid #055E61;border-radius:12px;padding:32px}h1{font-family:"Roboto Condensed",Arial,sans-serif;color:#055E61;font-weight:500;margin:0}h2{font-family:"Roboto Condensed",Arial,sans-serif;color:#055E61;font-weight:500;margin:28px 0 10px;border-bottom:1px solid #D9DEDE;padding-bottom:6px}.sub{color:#4A4A4A;margin:4px 0 20px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #D9DEDE;padding:8px;vertical-align:top;text-align:left}thead th{background:#055E61;color:#fff}.kv th{width:180px;background:#EAF2F1;color:#055E61}.refl{background:#EAF2F1;border-left:3px solid #055E61;padding:10px 14px;margin:10px 0;border-radius:0 8px 8px 0}.refl p{margin:6px 0 0;white-space:pre-wrap}.tbl{overflow-x:auto}.gate{max-width:420px;margin:12vh auto;background:#fff;border:1px solid #D9DEDE;border-top:6px solid #055E61;border-radius:12px;padding:28px;text-align:left}.gate input{font:inherit;width:100%;padding:12px;border:1.5px solid #D9DEDE;border-radius:8px;margin:12px 0}.gate button{font:inherit;background:#055E61;color:#fff;border:0;border-radius:999px;padding:11px 22px;cursor:pointer}.err{color:#B3261E;font-size:14px;min-height:1.2em}.foot{font-size:11px;color:#4A4A4A;margin-top:24px}';
+
+const b64 = buf => btoa(String.fromCharCode(...new Uint8Array(buf)));
+async function encrypt(text,pass){
+  const enc=new TextEncoder(), salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12));
+  const base=await crypto.subtle.importKey('raw',enc.encode(pass),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt']);
+  const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(text));
+  return {salt:b64(salt),iv:b64(iv),ct:b64(ct)};
+}
+async function downloadReport(){
+  if(!S.user){ toast('Primero completa el formulario de ingreso.','bad'); return; }
+  if(!(window.crypto && crypto.subtle)){ toast('Este navegador no permite cifrar el reporte. Usa Chrome, Edge, Firefox o Safari actualizados.','bad'); return; }
+  try{
+    const data=await encrypt('<div class="wrap">'+reportBody()+'<p class="foot">Documento cifrado (AES-GCM). Cualquier modificación del archivo impide abrirlo.</p></div>',TEACHER_KEY);
+    const name=(S.user.name||'participante').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-zA-Z0-9]+/g,'_');
+    const html='<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reporte EIP · '+esc(S.user.name)+'</title><style>'+REPORT_CSS+'</style></head><body>'+
+     '<div class="gate" id="gate"><h1>Reporte protegido</h1><p class="sub">Cápsula de Educación Interprofesional · ULagos. Ingrese la clave docente para ver los resultados.</p>'+
+     '<form id="f"><label for="p">Clave docente</label><input id="p" type="password" autocomplete="off" required><div class="err" id="e" role="alert"></div><button type="submit">Abrir reporte</button></form></div><div id="out" class="tbl"></div>'+
+     '<script>const D='+JSON.stringify(data)+';const u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));'+
+     'document.getElementById("f").addEventListener("submit",async e=>{e.preventDefault();try{const enc=new TextEncoder();const b=await crypto.subtle.importKey("raw",enc.encode(document.getElementById("p").value),"PBKDF2",false,["deriveKey"]);'+
+     'const k=await crypto.subtle.deriveKey({name:"PBKDF2",salt:u(D.salt),iterations:150000,hash:"SHA-256"},b,{name:"AES-GCM",length:256},false,["decrypt"]);'+
+     'const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:u(D.iv)},k,u(D.ct));document.getElementById("out").innerHTML=new TextDecoder().decode(pt);document.getElementById("gate").remove();}'+
+     'catch(x){document.getElementById("e").textContent="Clave incorrecta o archivo alterado.";}});<\/script></body></html>';
+    const blob=new Blob([html],{type:'text/html'}); const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='Reporte_EIP_'+name+'.html'; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+    toast('Reporte descargado. Envíalo por correo a tu tutor.','ok');
+  }catch(err){ toast('No fue posible generar el reporte: '+err.message,'bad'); }
+}
+$('#btnReport').addEventListener('click',downloadReport);
+
+$('#btnTeacher').addEventListener('click',()=>{
+  openModal('Vista docente','<form id="tf"><label for="tp" style="font-weight:500">Clave docente</label><input class="input" id="tp" type="password" autocomplete="off" style="margin:8px 0"><span class="hint err" id="te" role="alert"></span><div class="btn-row"><button class="btn" type="submit"><i class="fa-solid fa-unlock"></i>Abrir</button><button class="btn ghost" type="button" id="tc">Cancelar</button></div></form>');
+  $('#tc').onclick=closeModal;
+  $('#tf').onsubmit=(e)=>{ e.preventDefault();
+    if($('#tp').value!==TEACHER_KEY){ $('#te').textContent='Clave incorrecta.'; $('#tp').classList.add('invalid'); return; }
+    openModal('Vista docente','<style>'+REPORT_CSS.replace(/body\{[^}]*\}/,'')+'.wrap{padding:0;border:0}</style><div class="wrap tbl">'+reportBody()+'</div><div class="btn-row"><button class="btn" type="button" id="tclose">Cerrar</button></div>',true);
+    $('#tclose').onclick=closeModal;
+  };
+});
+
+/* ---------------- 9. CERTIFICADO PDF ---------------- */
+const SEAL_SVG='<svg viewBox="0 0 120 120" width="240" height="240" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="56" fill="#055E61"/><circle cx="60" cy="60" r="48" fill="none" stroke="#DCEEEF" stroke-width="1.5" stroke-dasharray="3 3"/><circle cx="60" cy="60" r="38" fill="none" stroke="#DCEEEF" stroke-width="1"/>'+
+ '<path d="M44 61l11 11 22-24" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>'+
+ '<text x="60" y="26" text-anchor="middle" font-family="Arial" font-size="8" letter-spacing="2" fill="#DCEEEF">APROBADO</text><text x="60" y="100" text-anchor="middle" font-family="Arial" font-size="8" letter-spacing="2" fill="#DCEEEF">ULAGOS · EIP</text></svg>';
+/* El sello se inserta como imagen (data URI) porque html2canvas rasteriza mejor <img> que SVG en línea */
+const SEAL='<img class="cert-seal" alt="" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(SEAL_SVG)+'">';
+function downloadCert(){
+  const best=S.eval.bestDetail;
+  if(!best || !best.passed){ toast('El certificado se habilita al aprobar la evaluación con 70 % o más.','bad'); return; }
+  if(typeof html2pdf==='undefined'){ toast('La librería de PDF aún no carga. Revisa tu conexión e inténtalo nuevamente.','bad'); return; }
+  const u=S.user, commit=(S.refl.r3||'').trim();
+  const done=S.finishedAt||best.at;
+  $('#certStage').innerHTML='<div class="cert" id="certEl"><div class="cert-frame"></div><div class="cert-in">'+SEAL+
+   '<div class="cert-top"><div class="cert-inst">Universidad de Los Lagos<small>Cápsula de formación docente · Educación Interprofesional</small></div></div>'+
+   '<h1>Certificado de aprobación</h1><div class="rule"></div>'+
+   '<div class="lbl">Se certifica que</div><div class="name">'+esc(u.name)+'</div>'+
+   '<div class="data">'+(u.rut?'RUT '+esc(u.rut)+' · ':'')+esc(u.career)+' · '+esc(u.email)+'</div>'+
+   '<p class="body">aprobó la cápsula <b>«Educación Interprofesional Universitaria: aprendiendo con, de y sobre otras disciplinas»</b>, orientada a comprender los roles y funciones de otras profesiones, valorar la formación de equipos interdisciplinarios y desarrollar competencias para la resolución colaborativa de problemas y la toma de decisiones compartidas.</p>'+
+   (commit?'<div class="commit"><b>Compromiso profesional:</b> '+esc(commit.length>420?commit.slice(0,417)+'…':commit)+'</div>':'')+
+   '<div class="cert-foot"><div><div class="cert-score">Calificación: '+Math.round(best.pct*100)+' % · Nota '+best.grade+'</div><div class="data">Fecha de término: '+fmtDate(done)+'</div><div class="data" style="margin-top:2px">Código: EIP-'+(new Date(done).getTime().toString(36).toUpperCase())+'</div></div>'+
+   '<div class="cert-sign"><div class="ln"></div>Coordinación de Educación Continua<br>Universidad de Los Lagos</div></div></div></div>';
+  const el=$('#certEl');
+  const name=u.name.normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-zA-Z0-9]+/g,'_');
+  toast('Generando certificado…');
+  html2pdf().set({ margin:0, filename:'Certificado_EIP_'+name+'.pdf', image:{type:'jpeg',quality:0.98},
+    html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff',scrollY:0,scrollX:0},
+    jsPDF:{unit:'in',format:'letter',orientation:'landscape'}, pagebreak:{mode:['avoid-all']}
+  }).from(el).save().then(()=>{ toast('Certificado descargado.','ok'); $('#certStage').innerHTML=''; })
+    .catch(err=>toast('No fue posible generar el PDF: '+err.message,'bad'));
+}
+$('#btnCert').addEventListener('click',downloadCert);
+
+/* ---------------- INICIO ---------------- */
+load(); buildDock(); paintUser(); loadRefl(); renderEval(false); initYouTube(); renderCloseSummary();
+if(S.user){ $('#fName').value=S.user.name; $('#fEmail').value=S.user.email; $('#fCareer').value=S.user.career; $('#fRut').value=S.user.rut||''; }
+const hash=(location.hash||'').replace('#','');
+const fromHash=SECTIONS.find(s=>s.id==='s-'+hash);
+go(S.user ? (fromHash?fromHash.id:S.current||'s-portada') : 's-ingreso', false);
+})();
+</script>
+</body>
+</html>
